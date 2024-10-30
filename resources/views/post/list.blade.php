@@ -4,9 +4,11 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Maqolalar') }}
             </h2>
-            
-              <a href="#" class="bg-slate-700 hover:bg-slate-600 text-sm rounded-md text-white px-3 py-2">Create</a>
-            
+            <a href="{{route('posts.create')}}" 
+                class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
+                Create
+            </a>
+
         </div>
     </x-slot>
 

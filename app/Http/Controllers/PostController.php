@@ -13,4 +13,11 @@ class PostController extends Controller
             'posts'=>$posts
         ]);
     }
+
+    public function create(Request $request){
+        return view('post.create');
+    }
+    public function store(Request $request){
+        return 'done';
+    }
 }
