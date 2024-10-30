@@ -6,9 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable=['title','subtitle','content','author'];
+   
+    protected $guarded = ['id']; 
     public function author()
     {
-        return $this->belongsTo(User::class, 'author');
+        return $this->belongsTo(User::class, 'author_id'); // author_id to'g'ri ko'rsatilganmi?
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 }

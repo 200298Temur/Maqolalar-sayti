@@ -14,24 +14,48 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            {{-- <x-message></x-message> --}}
+            <x-message></x-message>
             <table class="w-full">
                 <thead class="bg-gray-50">
                     <tr class="border-b">
                         <th class="px-6 py-3 text-left" width='60'>#</th>
-                        <th class="px-6 py-3 text-left" >Name</th>
+                        <th class="px-6 py-3 text-left" >Title</th>
+                        <th class="px-6 py-3 text-left" >Subtitle</th>
                         <th class="px-6 py-3 text-left" >Author</th>
                         <th class="px-6 py-3 text-left" width='180'>Created</th>
                         <th class="px-6 py-3 text-center" width='180'>Action</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white">
-                   
+                    @if ($posts->count() > 0)
+                        @foreach ($posts as $post)    
+                        <tr class="border-b">
+                            <td class="px-6 py-3 text-left">
+                                {{ $post->id }}
+                            </td>
+                            <td class="px-6 py-3 text-left">
+                                {{ $post->title }}
+                            </td>
+                            <td class="px-6 py-3 text-left">
+                                {{ $post->subtitle }}
+                            </td>
+                            <td class="px-6 py-3 text-left">
+                                {{$post->author->name}}
+                            </td>                                                 
+                            <td class="px-6 py-3 text-left">
+                                {{ \Carbon\Carbon::parse($post->created_at)->format('d M, Y') }}
+                            </td>
+                            <td class="px-6 py-3 text-center">
+                                text
+                            </td>
+                        </tr>
+                        @endforeach                        
+                    @endif
                 </tbody>
             </table>
-            {{-- <div class="my-3">
+            <div class="my-3">
                 {{ $posts->links() }}
-            </div> --}}
+            </div>
         </div>
     </div>
 </x-app-layout>

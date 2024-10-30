@@ -16,10 +16,10 @@
                     <form action="{{ route('posts.store') }}" method="post">
                         @csrf
                         <!-- Title Field -->
-                        <label for="title" class="text-lg font-medium">Mavzu</label>
+                        <label for="title" class="text-lg font-medium">Title</label>
                         <div class="my-3">
                             <input value="{{ old('title') }}" name="title" placeholder="Title" type="text"
-                                   class="border-gray-300 shadow-sm w-1/2 rounded-lg">
+                                   class="border-gray-300 shadow-sm w-full rounded-lg">
                             @error('title')
                                 <p class="text-red-400 font-medium">{{ $message }}</p>
                             @enderror
@@ -29,26 +29,27 @@
                         <label for="subtitle" class="text-lg font-medium">Subtitle</label>
                         <div class="my-3">
                             <input value="{{ old('subtitle') }}" name="subtitle" placeholder="Subtitle" type="text"
-                                   class="border-gray-300 shadow-sm w-1/2 rounded-lg">
+                                   class="border-gray-300 shadow-sm w-full rounded-lg">
                             @error('subtitle')
                                 <p class="text-red-400 font-medium">{{ $message }}</p>
                             @enderror
                         </div>
                         
+                        
                         <!-- Content Field -->
                         <label for="text" class="text-lg font-medium">Content</label>
                         <div class="my-3">
-                            <textarea name="text" placeholder="Content" id="editor" cols="30" rows="10" 
-                                      class="border-gray-300 shadow-sm w-1/2 rounded-lg">{{ old('text') }}</textarea>
+                            <textarea name="content" placeholder="Content" id="editor" cols="30" rows="10" 
+                                      class="border-gray-300 shadow-sm w-1/2 rounded-lg">{{ old('content') }}</textarea>
                         </div>
 
                         <!-- Author Display -->
                         <p class="text-lg font-medium">Author : {{ Auth::user()->name }}</p>
                         
                         <!-- Submit Button -->
-                        <button class="bg-gray-600 hover:bg-gray-500 text-sm rounded-md text-white px-5 py-3">
+                        <button class="bg-gray-500 hover:bg-gray-400 text-xs rounded-md text-white px-3 py-2">
                             Submit
-                        </button> 
+                        </button>                                               
                     </form>
                 </div>
             </div>
@@ -62,23 +63,27 @@
         ClassicEditor
             .create( document.querySelector( '#editor' ), {
                 toolbar: {
-                        items: [
-                            'undo', 'redo',
-                            '|',
-                            'heading',
-                            '|',
-                            'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
-                            '|',
-                            'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                            '|',
-                            'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                            '|',
-                            'alignment',
-                            '|',
-                            'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
-                        ],
-                        shouldNotGroupWhenFull: true
-                    }
+                    items: [
+                        'undo', 'redo',
+                        '|',
+                        'heading',
+                        '|',
+                        'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
+                        '|',
+                        'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
+                        '|',
+                        'link', 'uploadImage', 'blockQuote', 'codeBlock',
+                        '|',
+                        'alignment',
+                        '|',
+                        'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
+                    ],
+                    shouldNotGroupWhenFull: true
+                }
+                // toolbar: {
+                //     items: ['undo', 'redo', 'heading', 'bold', 'italic']
+                // }
+
             } )
             .catch( error => {
                 console.log( error );
