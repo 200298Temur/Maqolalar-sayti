@@ -47,4 +47,29 @@ class PostController extends Controller
         }
     }
 
+    public function destroy(Request $request){
+        $post=Post::find($request->id);
+        if($post==null){
+            session()->flash('error','Post not found');
+            return response()->json([
+                'status'=>false
+            ]);
+        }
+        $post->delete();
+        session()->flash('success','Post deleted successfully');
+        return response()->json([
+            'status'=>true
+        ]);
+
+    }
+
+    public function edit(string $id){
+        $post=Post::find($id);
+        return view('post.edit',[
+            'post'=>$post
+        ]);
+    }
+    public function update(){
+
+    }
 }
