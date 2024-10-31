@@ -25,13 +25,14 @@ Route::middleware('auth')->group(function () {
     Route::post('posts/',[PostController::class,'store'])->name('posts.store');
     Route::get('posts/{id}/edit',[PostController::class,'edit'])->name('posts.edit');
     Route::post('posts/{id}',[PostController::class,'update'])->name('posts.update');
+    Route::get('posts/{id}',[PostController::class,'destroy'])->name('posts.destroy');
     
     Route::get('categories',[CategoryController::class,'index'])->name('categories.index');
     Route::get('categories/create',[CategoryController::class,'create'])->name('categories.create');
     Route::post('categories/',[CategoryController::class,'store'])->name('categories.store');
     Route::get('categories/{id}/edit',[CategoryController::class,'edit'])->name('categories.edit');
     Route::post('categories/{id}',[CategoryController::class,'update'])->name('categories.update');
-    
+    Route::get('categories/{id}',[CategoryController::class,'destroy'])->name('categories.destroy');
     
 });
 

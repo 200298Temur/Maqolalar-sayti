@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,10 @@ class PostController extends Controller
     
 
     public function create(Request $request){
-        return view('post.create');
+        $categories=Category::orderBy('name','asc')->get();
+        return view('post.create',[
+            'categories'=>$categories
+        ]);
     }
     public function store(Request $request)
     {
@@ -27,39 +31,39 @@ class PostController extends Controller
             'title' => 'required|min:5',
             'subtitle' => 'required|min:5',
             'content' => 'required|min:10',
+            'categories' => 'array' // categories maydonini array qilib ko'rsatilganini tekshiradi
         ]);
     
-        // dd($validator);
-        // Check if validation passes
         if ($validator->passes()) {
             $post = new Post();
             $post->title = $request->title;
             $post->subtitle = $request->subtitle;
             $post->content = $request->content;
             $post->author_id = auth()->user()->id;
-            // dd($post);
             $post->save();
-
+    
+            // dd($request->categories);
+            if (!empty($request->categories)) {
+                $post->categories()->attach($request->categories);
+            }
+            
+    
             return redirect()->route('posts.index')->with('success', 'Post created successfully');
         } else {
-            // Redirect back to create page with errors
             return redirect()->route('posts.create')->withInput()->withErrors($validator);
         }
     }
+    
 
     public function destroy(Request $request){
         $post=Post::find($request->id);
         if($post==null){
-            session()->flash('error','Post not found');
-            return response()->json([
-                'status'=>false
-            ]);
+            return redirect()->route('posts.index')->with('error', 'Post not found');
+
         }
         $post->delete();
-        session()->flash('success','Post deleted successfully');
-        return response()->json([
-            'status'=>true
-        ]);
+        return redirect()->route('posts.index')->with('success', 'Post deleted successfully');
+
 
     }
 
@@ -69,7 +73,25 @@ class PostController extends Controller
             'post'=>$post
         ]);
     }
-    public function update(){
+    public function update(Request $request,string $id){
+        $post =Post::find($id);
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|min:5',
+            'subtitle' => 'required|min:5',
+            'content' => 'required|min:10',
+        ]);
+        if ($validator->passes()) {
+            $post->title = $request->title;
+            $post->subtitle = $request->subtitle;
+            $post->content = $request->content;
+            $post->author_id = auth()->user()->id;
+            // dd($post);
+            $post->save();
 
+            return redirect()->route('posts.index')->with('success', 'Post updated successfully');
+        } else {
+            // Redirect back to create page with errors
+            return redirect()->route('posts.create')->withInput()->withErrors($validator);
+        }
     }
 }

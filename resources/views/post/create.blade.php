@@ -24,6 +24,17 @@
                                 <p class="text-red-400 font-medium">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div class="grid grid-cols-4 mb-4">
+                            @if ($categories->isNotEmpty())
+                                @foreach ($categories as $category)
+                                    <div class="mt-3">
+                                        <input type="checkbox" id="category-{{ $category->id }}"
+                                               class="rounded" name="categories[]" value="{{ $category->id }}">
+                                        <label for="category-{{ $category->id }}">{{ $category->name }}</label>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
                         
                         <!-- Subtitle Field -->
                         <label for="subtitle" class="text-lg font-medium">Subtitle</label>
