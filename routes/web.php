@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,13 @@ Route::middleware('auth')->group(function () {
     Route::post('posts/',[PostController::class,'store'])->name('posts.store');
     Route::get('posts/{id}/edit',[PostController::class,'edit'])->name('posts.edit');
     Route::post('posts/{id}',[PostController::class,'update'])->name('posts.update');
+    
+    Route::get('categories',[CategoryController::class,'index'])->name('categories.index');
+    Route::get('categories/create',[CategoryController::class,'create'])->name('categories.create');
+    Route::post('categories/',[CategoryController::class,'store'])->name('categories.store');
+    Route::get('categories/{id}/edit',[CategoryController::class,'edit'])->name('categories.edit');
+    Route::post('categories/{id}',[CategoryController::class,'update'])->name('categories.update');
+    
     
 });
 
