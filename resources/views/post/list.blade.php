@@ -19,6 +19,7 @@
                     <tr class="border-b">
                         <th class="px-6 py-3 text-left" width="60">#</th>
                         <th class="px-6 py-3 text-left">Title</th>
+                        <th class="px-6 py-3 text-left">Category</th>
                         <th class="px-6 py-3 text-left">Subtitle</th>
                         <th class="px-6 py-3 text-left">Author</th>
                         <th class="px-6 py-3 text-left" width="180">Created</th>
@@ -30,7 +31,8 @@
                         @foreach ($posts as $post)
                         <tr class="border-b">
                             <td class="px-6 py-4 text-left">{{ $post->id }}</td>
-                            <td class="px-6 py-4 text-left">{{ $post->title }}</td>
+                            <td class="px-6 py-4 text-left"><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
+                            <td class="px-6 py-4 text-left">{{ $post->categories->pluck('name')->implode(',') }}</td>
                             <td class="px-6 py-4 text-left">{{ $post->subtitle }}</td>
                             <td class="px-6 py-4 text-left">{{ $post->author->name }}</td>
                             <td class="px-6 py-4 text-left">

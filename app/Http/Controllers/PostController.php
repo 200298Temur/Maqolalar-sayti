@@ -15,9 +15,12 @@ class PostController extends Controller
             'posts' => $posts
         ]);
     }
-    
-    
-
+    public function show(string $id){
+        $post=Post::find($id);
+        return view('post.show',[
+            'post'=>$post
+        ]);
+    }
     public function create(Request $request){
         $categories=Category::orderBy('name','asc')->get();
         return view('post.create',[
@@ -31,7 +34,7 @@ class PostController extends Controller
             'title' => 'required|min:5',
             'subtitle' => 'required|min:5',
             'content' => 'required|min:10',
-            'categories' => 'array' // categories maydonini array qilib ko'rsatilganini tekshiradi
+            // 'categories' => 'array' // categories maydonini array qilib ko'rsatilganini tekshiradi
         ]);
     
         if ($validator->passes()) {
@@ -63,16 +66,19 @@ class PostController extends Controller
         }
         $post->delete();
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully');
-
-
     }
 
     public function edit(string $id){
         $post=Post::find($id);
+        $categories=Category::orderBy('name','asc')->get();
+        $hasCategories=$post->categories->pluck('name');
         return view('post.edit',[
-            'post'=>$post
+            'post'=>$post,
+            'categories'=>$categories,
+            'hasCategories'=>$hasCategories
         ]);
     }
+
     public function update(Request $request,string $id){
         $post =Post::find($id);
         $validator = Validator::make($request->all(), [
@@ -87,7 +93,12 @@ class PostController extends Controller
             $post->author_id = auth()->user()->id;
             // dd($post);
             $post->save();
-
+            if(!empty($request->categories)){
+                // $post->syncCategories($request->categories);
+                $post->categories()->sync($request->categories);
+            }else{
+                $post->categories()->sync();
+            }
             return redirect()->route('posts.index')->with('success', 'Post updated successfully');
         } else {
             // Redirect back to create page with errors
