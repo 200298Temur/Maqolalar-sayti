@@ -105,4 +105,21 @@ class PostController extends Controller
             return redirect()->route('posts.create')->withInput()->withErrors($validator);
         }
     }
+
+    public function uploadMedia(Request $request)
+    {
+        return "Salom";
+        if ($request->hasFile('upload')) {
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+      
+            $request->file('upload')->move(public_path('media'), $fileName);
+      
+            $url = asset('media/' . $fileName);
+  
+            return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
+        }
+    }
 }

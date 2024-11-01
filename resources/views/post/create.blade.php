@@ -48,11 +48,16 @@
                         
                         
                         <!-- Content Field -->
-                        <label for="text" class="text-lg font-medium">Content</label>
-                        <div class="my-3">
+                        {{-- <label for="text" class="text-lg font-medium">Content</label> --}}
+                        {{-- <div class="my-3">
                             <textarea name="content" placeholder="Content" id="editor" cols="30" rows="10" 
                                       class="border-gray-300 shadow-sm w-1/2 rounded-lg">{{ old('content') }}</textarea>
+                        </div> --}}
+                        <div class="form-group">
+                            <strong>Content:</strong>
+                            <textarea value="{{ old('content') }}" name="content"  id="editor"></textarea>
                         </div>
+                  
 
                         <!-- Author Display -->
                         <p class="text-lg font-medium">Author : {{ Auth::user()->name }}</p>
@@ -67,39 +72,16 @@
         </div>
     </div>
 
-    <!-- CKEditor Script Setup -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
-    
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
-            .create( document.querySelector( '#editor' ), {
-                toolbar: {
-                    items: [
-                        'undo', 'redo',
-                        '|',
-                        'heading',
-                        '|',
-                        'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
-                        '|',
-                        'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                        '|',
-                        'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                        '|',
-                        'alignment',
-                        '|',
-                        'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
-                    ],
-                    shouldNotGroupWhenFull: true
+            .create( document.querySelector( '#content' ),{
+                ckfinder: {
+                    uploadUrl: '{{route('posts.uploadMedia').'?_token='.csrf_token()}}',
                 }
-                // toolbar: {
-                //     items: ['undo', 'redo', 'heading', 'bold', 'italic']
-                // }
-
-            } )
+            })
             .catch( error => {
-                console.log( error );
+                
             } );
-            
-
     </script>
 </x-app-layout>

@@ -26,7 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::get('posts/{id}/edit',[PostController::class,'edit'])->name('posts.edit');
     Route::post('posts/{id}',[PostController::class,'update'])->name('posts.update');
     Route::get('posts/{id}',[PostController::class,'destroy'])->name('posts.destroy');
-    
+    Route::post('posts/upload', [PostController::class, 'uploadMedia'])->name('posts.uploadMedia');
+   
+   
     Route::get('categories',[CategoryController::class,'index'])->name('categories.index');
     Route::get('categories/create',[CategoryController::class,'create'])->name('categories.create');
     Route::post('categories/',[CategoryController::class,'store'])->name('categories.store');
