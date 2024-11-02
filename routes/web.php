@@ -13,6 +13,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::post('posts/upload', [PostController::class, 'upload'])->name('posts.uploadMedia');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -26,8 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('posts/{id}/edit',[PostController::class,'edit'])->name('posts.edit');
     Route::post('posts/{id}',[PostController::class,'update'])->name('posts.update');
     Route::get('posts/{id}',[PostController::class,'destroy'])->name('posts.destroy');
-    Route::post('posts/upload', [PostController::class, 'uploadMedia'])->name('posts.uploadMedia');
-   
+    // Route::post('posts/upload', [PostController::class, 'uploadMedia'])->name('posts.uploadMedia');
+    
    
     Route::get('categories',[CategoryController::class,'index'])->name('categories.index');
     Route::get('categories/create',[CategoryController::class,'create'])->name('categories.create');

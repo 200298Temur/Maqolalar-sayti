@@ -47,15 +47,11 @@
                         </div>
                         
                         
-                        <!-- Content Field -->
-                        {{-- <label for="text" class="text-lg font-medium">Content</label> --}}
-                        {{-- <div class="my-3">
+                        
+                        <label for="text" class="text-lg font-medium">Content</label> 
+                        <div class="my-3">
                             <textarea name="content" placeholder="Content" id="editor" cols="30" rows="10" 
                                       class="border-gray-300 shadow-sm w-1/2 rounded-lg">{{ old('content') }}</textarea>
-                        </div> --}}
-                        <div class="form-group">
-                            <strong>Content:</strong>
-                            <textarea value="{{ old('content') }}" name="content"  id="editor"></textarea>
                         </div>
                   
 
@@ -74,14 +70,20 @@
 
     <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
     <script>
+        
         ClassicEditor
-            .create( document.querySelector( '#content' ),{
-                ckfinder: {
-                    uploadUrl: '{{route('posts.uploadMedia').'?_token='.csrf_token()}}',
-                }
-            })
+            .create( document.querySelector( '#editor' ),{
+                    ckfinder: {
+                        uploadUrl: '{{route('posts.uploadMedia').'?_token='.csrf_token()}}',
+            } })
+            .then( editor => {
+                console.log( 'Editor was initialized', editor );
+                question_editor = editor;
+                } )
             .catch( error => {
-                
+                console.error( error );
             } );
+
     </script>
+        
 </x-app-layout>

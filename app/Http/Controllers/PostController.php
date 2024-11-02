@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -108,7 +109,6 @@ class PostController extends Controller
 
     public function uploadMedia(Request $request)
     {
-        return "Salom";
         if ($request->hasFile('upload')) {
             $originName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
@@ -116,10 +116,44 @@ class PostController extends Controller
             $fileName = $fileName . '_' . time() . '.' . $extension;
       
             $request->file('upload')->move(public_path('media'), $fileName);
-      
             $url = asset('media/' . $fileName);
   
             return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
         }
     }
+    public function upload(Request $request)
+    {
+        try {
+            // Faylni tekshirish
+            $request->validate([
+                'upload' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+            ]);
+            $folder = storage_path('app/public/images/');
+            if (!is_dir($folder)) {
+                mkdir($folder, 777);
+            }
+            $file = $request->file('upload');
+            $file_name = time() . $file->getClientOriginalName();
+            $repeat = 0;
+            if (is_file($file_name)) {
+                $repeat++;
+                $file_name = $repeat . "_" . $file_name;
+            }
+            $path = $file->move($folder, $file_name);
+            $url = env('APP_URL') . "/storage/images/" . $file_name;
+
+            return response()->json([
+                'uploaded' => true,
+                'url' => $url
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'uploaded' => false,
+                'error' => [
+                    'message' => $e->getMessage()
+                ]
+            ]);
+        }
+    }
+
 }

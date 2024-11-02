@@ -17,6 +17,5 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "ckeditor5": "^43.3.0"
     }
 }
