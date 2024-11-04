@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('subtitle');
             $table->text('content');
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade'); // author_id
+            $table->date('Attime')->default(now()); 
+            $table->string('publish')->default(0);
             $table->timestamps();
         });        
     }

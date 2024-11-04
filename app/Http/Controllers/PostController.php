@@ -43,8 +43,15 @@ class PostController extends Controller
             $post->title = $request->title;
             $post->subtitle = $request->subtitle;
             $post->content = $request->content;
+    
+            // Publish ustunini draft tanloviga qarab belgilash
+            $post->publish = $request->publish === 'publish' ? 1 : 0;
+    
+            // Agar time qiymati bo'lmasa, bugungi sanani oling
+            $post->Attime = $request->Attime ? \Carbon\Carbon::parse($request->Attime)->format('Y-m-d') : now()->format('Y-m-d');    
             $post->author_id = auth()->user()->id;
             $post->save();
+
     
             // dd($request->categories);
             if (!empty($request->categories)) {
@@ -91,6 +98,9 @@ class PostController extends Controller
             $post->title = $request->title;
             $post->subtitle = $request->subtitle;
             $post->content = $request->content;
+            $post->publish = $request->publish === 'publish' ? 1 : 0;
+            $post->Attime = $request->Attime ? \Carbon\Carbon::parse($request->Attime)->format('Y-m-d') : now()->format('Y-m-d');    
+
             $post->author_id = auth()->user()->id;
             // dd($post);
             $post->save();
@@ -104,21 +114,6 @@ class PostController extends Controller
         } else {
             // Redirect back to create page with errors
             return redirect()->route('posts.create')->withInput()->withErrors($validator);
-        }
-    }
-
-    public function uploadMedia(Request $request)
-    {
-        if ($request->hasFile('upload')) {
-            $originName = $request->file('upload')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName . '_' . time() . '.' . $extension;
-      
-            $request->file('upload')->move(public_path('media'), $fileName);
-            $url = asset('media/' . $fileName);
-  
-            return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
         }
     }
     public function upload(Request $request)

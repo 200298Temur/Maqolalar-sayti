@@ -53,7 +53,14 @@
                             <textarea name="content" placeholder="Content" id="editor" cols="30" rows="10" 
                                       class="border-gray-300 shadow-sm w-1/2 rounded-lg">{{ old('content',$post->content) }}</textarea>
                         </div>
-
+                        <div>
+                            <select name="publish" class="form-control" id="exampleFormControlSelect1">
+                                <option value="draft" {{ old('publish', $post->publish) === '0' ? 'selected' : '' }}>Draft</option>
+                                <option value="publish" {{ old('publish', $post->publish) === '1' ? 'selected' : '' }}>Publish</option>
+                            </select>
+                            
+                            <input type="date" value="{{ old('Attime', $post->Attime) }}" name="Attime" class="ml-10 rounded-lg border-gray-300">
+                        </div>                            
                         <!-- Author Display -->
                         <p class="text-lg font-medium">Author : {{ Auth::user()->name }}</p>
                         
@@ -68,38 +75,21 @@
     </div>
 
     <!-- CKEditor Script Setup -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
-    
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
     <script>
+        
         ClassicEditor
-            .create( document.querySelector( '#editor' ), {
-                toolbar: {
-                    items: [
-                        'undo', 'redo',
-                        '|',
-                        'heading',
-                        '|',
-                        'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
-                        '|',
-                        'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                        '|',
-                        'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                        '|',
-                        'alignment',
-                        '|',
-                        'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
-                    ],
-                    shouldNotGroupWhenFull: true
-                }
-                // toolbar: {
-                //     items: ['undo', 'redo', 'heading', 'bold', 'italic']
-                // }
-
-            } )
+            .create( document.querySelector( '#editor' ),{
+                    ckfinder: {
+                        uploadUrl: '{{route('posts.uploadMedia').'?_token='.csrf_token()}}',
+            } })
+            .then( editor => {
+                console.log( 'Editor was initialized', editor );
+                question_editor = editor;
+                } )
             .catch( error => {
-                console.log( error );
+                console.error( error );
             } );
-            
 
     </script>
 </x-app-layout>

@@ -23,6 +23,7 @@
                         <th class="px-6 py-3 text-left">Subtitle</th>
                         <th class="px-6 py-3 text-left">Author</th>
                         <th class="px-6 py-3 text-left" width="180">Created</th>
+                        <th class="px-6 py-3 text-left">Condition</th>
                         <th class="px-6 py-3 text-center" width="180">Action</th>
                     </tr>
                 </thead>
@@ -36,7 +37,10 @@
                             <td class="px-6 py-4 text-left">{{ $post->subtitle }}</td>
                             <td class="px-6 py-4 text-left">{{ $post->author->name }}</td>
                             <td class="px-6 py-4 text-left">
-                                {{ \Carbon\Carbon::parse($post->created_at)->format('d M, Y') }}
+                                {{ \Carbon\Carbon::parse($post->Attime)->format('d M, Y') }}
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <p>{{ $post->publish === '0' ? 'Draft' : 'Publish' }}</p>
                             </td>
                             <td class="px-6 py-4 text-center"> 
                                 <a href="{{ route('posts.edit', $post->id) }}" 

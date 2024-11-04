@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FronController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -12,15 +13,23 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::post('posts/upload', [PostController::class, 'upload'])->name('posts.uploadMedia');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+});
 
+
+Route::prefix('front')->group(function(){
+    Route::get('posts/',[FronController::class,'index'])->name('front.index');
+});
+
+
+
+Route::post('posts/upload', [PostController::class, 'upload'])->name('posts.uploadMedia');
+
+Route::prefix('admin')->middleware('auth')->group(function () {    
     Route::get('posts/show/{id}', [PostController::class, 'show'])->name('posts.show'); 
     Route::get('posts',[PostController::class,'index'])->name('posts.index');
     Route::get('posts/create',[PostController::class,'create'])->name('posts.create');
@@ -28,9 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('posts/{id}/edit',[PostController::class,'edit'])->name('posts.edit');
     Route::post('posts/{id}',[PostController::class,'update'])->name('posts.update');
     Route::get('posts/{id}',[PostController::class,'destroy'])->name('posts.destroy');
-    // Route::post('posts/upload', [PostController::class, 'uploadMedia'])->name('posts.uploadMedia');
     
-   
     Route::get('categories',[CategoryController::class,'index'])->name('categories.index');
     Route::get('categories/create',[CategoryController::class,'create'])->name('categories.create');
     Route::post('categories/',[CategoryController::class,'store'])->name('categories.store');
@@ -40,4 +47,5 @@ Route::middleware('auth')->group(function () {
     
 });
 
+// Require authentication routes
 require __DIR__.'/auth.php';

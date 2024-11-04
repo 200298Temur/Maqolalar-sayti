@@ -49,17 +49,29 @@
                         
                         
                         <label for="text" class="text-lg font-medium">Content</label> 
-                        <div class="my-3">
-                            <textarea name="content" placeholder="Content" id="editor" cols="30" rows="10" 
-                                      class="border-gray-300 shadow-sm w-1/2 rounded-lg">{{ old('content') }}</textarea>
+                        <div class="flex flex-col gap-3 mb-3">
+                            <div>
+                                <textarea name="content" placeholder="Content" id="editor" cols="30" rows="10" 
+                                          class="border-gray-300 shadow-sm w-1/2 rounded-lg">{{ old('content') }}</textarea>
+                            </div>
+    
+                            <!-- Author Display -->
+                            
+                            <div>
+                                <select value="{{ old('draft') }}" name="publish" class="form-control" id="exampleFormControlSelect1">
+                                    <option value="draft">Draft</option>
+                                    <option value="publish">Publish</option>
+                                </select>
+                                {{-- <input type="checkbox" id="chek">
+                                <label for="chek">Ruxsat</label> --}}
+                                <input type="date" value="{{ old('Attime') }}" name="Attime" class="ml-10 rounded-lg border-gray-300">
+                            </div>
+                            <div>
+                                <p class="text-lg font-medium">Author : {{ Auth::user()->name }}</p>
+                            </div>
                         </div>
-                  
-
-                        <!-- Author Display -->
-                        <p class="text-lg font-medium">Author : {{ Auth::user()->name }}</p>
-                        
                         <!-- Submit Button -->
-                        <button class="bg-gray-500 hover:bg-gray-400 text-xs rounded-md text-white px-3 py-2">
+                        <button class="bg-gray-500 hover:bg-gray-400 text-md rounded-md text-white px-5 py-2">
                             Submit
                         </button>                                               
                     </form>
