@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class FronController extends Controller
@@ -11,7 +12,11 @@ class FronController extends Controller
      */
     public function index()
     {
-        return view('post.index');
+        $posts=Post::where('publish','1')->orderBy('created_at','desc')->get();
+        // dd($posts);
+        return view('front.post.index',[
+            'posts'=>$posts
+        ]);
     }
 
     /**
