@@ -24,7 +24,8 @@ Route::middleware('auth')->group(function () {
 Route::prefix('front')->group(function(){
     Route::get('posts/',[FronController::class,'index'])->name('front.index');
     Route::get('posts/show/{id}',[FronController::class,'show'])->name('front.show');
-
+    Route::get('posts/see/{id}',[FronController::class,'PostSee'])->name('front.see');
+    
 });
 
 

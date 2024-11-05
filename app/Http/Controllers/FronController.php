@@ -18,9 +18,23 @@ class FronController extends Controller
         // dd($categories);
         return view('front.post.index', [
             'posts' => $posts,
-            'categories' => $categories // Bu bilan main.blade.php ga ham uzatiladi
+            'categories' => $categories 
         ]);
     }
+    public function PostSee($id)
+    {
+        $post = Post::where('publish', '1')
+                    ->where('id', '=', $id)
+                    ->first(); // `get()` o'rniga `first()` ishlatilmoqda
+
+        $categories = Category::orderBy('name', 'desc')->get();
+
+        return view('front.post.see', [
+            'post' => $post,
+            'categories' => $categories
+        ]); 
+    }
+
     public function show(string $id)
     {   
         $posts = Post::where('publish', '1')

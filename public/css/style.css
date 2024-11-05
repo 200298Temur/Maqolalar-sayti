@@ -3,13 +3,24 @@
 /**********************************/
 body {
     color: #000000;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     background: #ffffff;
 }
 
+.card {
+    border: 1px solid silver;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.text {
+    margin-top: 20px;
+}
+
 a {
-    color: #FF6F61;
+    color: #ff6f61;
     transition: 0.5s;
 }
 
@@ -48,7 +59,7 @@ h6 {
 .back-to-top {
     position: fixed;
     display: none;
-    background: #FF6F61;
+    background: #ff6f61;
     color: #ffffff;
     width: 35px;
     height: 35px;
@@ -71,7 +82,6 @@ h6 {
     color: #ffffff;
 }
 
-
 /**********************************/
 /********* Form Input CSS *********/
 /**********************************/
@@ -82,13 +92,13 @@ h6 {
     padding: 5px 15px;
     color: #999999;
     border: 1px solid #cccccc;
-    margin-bottom: 15px
+    margin-bottom: 15px;
 }
 
 .form-control:focus,
 .custom-select:focus {
     box-shadow: none;
-    border-color: #FF6F61;
+    border-color: #ff6f61;
 }
 
 .custom-radio,
@@ -101,10 +111,10 @@ h6 {
     border-color: #cccccc;
 }
 
-.custom-radio .custom-control-input:checked~.custom-control-label::before,
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before,
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
     color: #ffffff;
-    background: #FF6F61;
+    background: #ff6f61;
 }
 
 button.btn {
@@ -115,10 +125,9 @@ button.btn {
 
 button.btn:hover {
     color: #ffffff;
-    background: #FF6F61;
-    border-color: #FF6F61;
+    background: #ff6f61;
+    border-color: #ff6f61;
 }
-
 
 /**********************************/
 /*********** Top Bar CSS **********/
@@ -131,7 +140,7 @@ button.btn:hover {
 .top-bar .tb-contact p {
     display: inline-block;
     margin: 0;
-    color: #FF6F61;
+    color: #ff6f61;
     font-size: 14px;
 }
 
@@ -149,7 +158,7 @@ button.btn:hover {
 }
 
 .top-bar .tb-menu a {
-    color: #FF6F61;
+    color: #ff6f61;
     font-size: 14px;
     margin: 0 8px;
 }
@@ -166,7 +175,7 @@ button.btn:hover {
     position: absolute;
     content: "/";
     margin: 1px 0 0 6px;
-    color: #FF6F61;
+    color: #ff6f61;
     font-size: 14px;
 }
 
@@ -180,7 +189,6 @@ button.btn:hover {
         text-align: center;
     }
 }
-
 
 /**********************************/
 /*********** Brand CSS ************/
@@ -213,7 +221,7 @@ button.btn:hover {
     width: 100%;
 }
 
-.brand .b-search input[type=text] {
+.brand .b-search input[type="text"] {
     width: 100%;
     height: 40px;
     padding: 0 15px;
@@ -222,8 +230,8 @@ button.btn:hover {
     border-radius: 4px;
 }
 
-.brand .b-search input[type=text]:focus {
-    border-color: #FF6F61;
+.brand .b-search input[type="text"]:focus {
+    border-color: #ff6f61;
 }
 
 .brand .b-search button {
@@ -234,12 +242,12 @@ button.btn:hover {
     right: 15px;
     border: none;
     background: none;
-    color: #FF6F61;
+    color: #ff6f61;
     border-radius: 0 4px 4px 0;
 }
 
 .brand .b-search button:hover {
-    background: #FF6F61;
+    background: #ff6f61;
     color: #ffffff;
 }
 
@@ -256,12 +264,11 @@ button.btn:hover {
         text-align: center;
         margin-bottom: 15px;
     }
-    
+
     .brand .b-search {
         margin-bottom: 0;
     }
 }
-
 
 /**********************************/
 /*********** Nav Bar CSS **********/
@@ -274,7 +281,7 @@ button.btn:hover {
     position: fixed;
     top: 0;
     width: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 999;
 }
 
@@ -307,13 +314,13 @@ button.btn:hover {
 @media (min-width: 768px) {
     .nav-bar,
     .nav-bar .navbar {
-        background: #FF6F61 !important;
+        background: #ff6f61 !important;
     }
-    
+
     .nav-bar .navbar-brand {
         display: none;
     }
-    
+
     .nav-bar a.nav-link {
         padding: 8px 15px;
         font-size: 15px;
@@ -321,21 +328,21 @@ button.btn:hover {
     }
 }
 
-@media (max-width: 768px) {   
+@media (max-width: 768px) {
     .nav-bar,
     .nav-bar .navbar {
         padding: 3px 0;
-        background: #FF6F61 !important;
+        background: #ff6f61 !important;
     }
-    
+
     .nav-bar a.nav-link {
         padding: 5px;
     }
-    
+
     .nav-bar .dropdown-menu {
         box-shadow: none;
     }
-    
+
     .nav-bar .social {
         display: none;
     }
@@ -354,7 +361,7 @@ button.btn:hover {
     padding: 3px 0;
     text-align: center;
     font-size: 14px;
-    background: #FF6F61;
+    background: #ff6f61;
     border: 1px solid #ffffff;
     border-radius: 4px;
 }
@@ -369,9 +376,8 @@ button.btn:hover {
 }
 
 .nav-bar .social a:hover i {
-    color: #FF6F61;
+    color: #ff6f61;
 }
-
 
 /**********************************/
 /********** Top News CSS **********/
@@ -398,12 +404,16 @@ button.btn:hover {
 
 .top-news .tn-title {
     position: absolute;
-    top: 0; 
+    top: 0;
     right: 0;
-    bottom: 0; 
+    bottom: 0;
     left: 0;
     padding: 15px 10px 15px 20px;
-    background-image: linear-gradient(rgba(0, 0, 0, .0), rgba(0, 0, 0, .3), rgba(0, 0, 0, .9));
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.9)
+    );
     display: flex;
     align-items: flex-end;
 }
@@ -414,7 +424,7 @@ button.btn:hover {
     color: #ffffff;
     font-size: 18px;
     font-weight: 400;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .top-news .tn-left .tn-title a {
@@ -423,7 +433,7 @@ button.btn:hover {
 }
 
 .top-news .tn-title a:hover {
-    color: #FF6F61;
+    color: #ff6f61;
 }
 
 .top-news .tn-left {
@@ -444,7 +454,7 @@ button.btn:hover {
     width: 28px;
     height: 28px;
     z-index: 1;
-    transition: .5s;
+    transition: 0.5s;
     color: #ffffff;
     background: #000000;
     border-radius: 4px;
@@ -463,7 +473,7 @@ button.btn:hover {
 .top-news .slick-next:hover,
 .top-news .slick-next:focus {
     color: #ffffff;
-    background: #FF6F61;
+    background: #ff6f61;
 }
 
 .top-news .slick-prev::before,
@@ -481,7 +491,6 @@ button.btn:hover {
 .top-news .slick-next::before {
     content: "\f105";
 }
-
 
 /**********************************/
 /******* Category News CSS ********/
@@ -519,12 +528,16 @@ button.btn:hover {
 
 .cat-news .cn-title {
     position: absolute;
-    top: 0; 
+    top: 0;
     right: 0;
-    bottom: 0; 
+    bottom: 0;
     left: 0;
     padding: 15px 10px 15px 20px;
-    background-image: linear-gradient(rgba(0, 0, 0, .0), rgba(0, 0, 0, .3), rgba(0, 0, 0, .9));
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.9)
+    );
     display: flex;
     align-items: flex-end;
 }
@@ -535,11 +548,11 @@ button.btn:hover {
     color: #ffffff;
     font-size: 18px;
     font-weight: 400;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .cat-news .cn-title a:hover {
-    color: #FF6F61;
+    color: #ff6f61;
 }
 
 .cat-news .slick-prev,
@@ -548,7 +561,7 @@ button.btn:hover {
     width: 28px;
     height: 28px;
     z-index: 1;
-    transition: .5s;
+    transition: 0.5s;
     color: #ffffff;
     background: #000000;
     border-radius: 4px;
@@ -567,7 +580,7 @@ button.btn:hover {
 .cat-news .slick-next:hover,
 .cat-news .slick-next:focus {
     color: #ffffff;
-    background: #FF6F61;
+    background: #ff6f61;
 }
 
 .cat-news .slick-prev::before,
@@ -585,7 +598,6 @@ button.btn:hover {
 .cat-news .slick-next::before {
     content: "\f105";
 }
-
 
 /**********************************/
 /********** Tab News CSS **********/
@@ -607,12 +619,12 @@ button.btn:hover {
 .tab-news .nav.nav-pills .nav-link:hover,
 .tab-news .nav.nav-pills .nav-link.active {
     color: #ffffff;
-    background: #FF6F61;
+    background: #ff6f61;
 }
 
 .tab-news .tab-content {
     padding: 30px 15px 15px 15px;
-    background: rgba(0, 0, 0, .05);
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .tab-news .tn-news {
@@ -638,14 +650,12 @@ button.btn:hover {
     color: #000000;
     font-size: 18px;
     font-weight: 400;
-    transition: all .3s;
+    transition: all 0.3s;
 }
 
 .tab-news .tn-title a:hover {
-    color: #FF6F61;
+    color: #ff6f61;
 }
-
-
 
 /**********************************/
 /********** Main News CSS *********/
@@ -676,12 +686,16 @@ button.btn:hover {
 
 .main-news .mn-title {
     position: absolute;
-    top: 0; 
+    top: 0;
     right: 0;
-    bottom: 0; 
+    bottom: 0;
     left: 0;
     padding: 15px 10px 15px 20px;
-    background-image: linear-gradient(rgba(0, 0, 0, .0), rgba(0, 0, 0, .3), rgba(0, 0, 0, .9));
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.9)
+    );
     display: flex;
     align-items: flex-end;
 }
@@ -692,11 +706,11 @@ button.btn:hover {
     color: #ffffff;
     font-size: 18px;
     font-weight: 400;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .main-news .mn-title a:hover {
-    color: #FF6F61;
+    color: #ff6f61;
 }
 
 .main-news .mn-list {
@@ -717,11 +731,11 @@ button.btn:hover {
 }
 
 .main-news .mn-list ul li {
-    margin: 0 0 12px 22px; 
+    margin: 0 0 12px 22px;
 }
 
 .main-news .mn-list ul li:last-child {
-    margin-bottom: 0; 
+    margin-bottom: 0;
 }
 
 .main-news .mn-list ul li a {
@@ -732,17 +746,16 @@ button.btn:hover {
 
 .main-news .mn-list ul li::before {
     position: absolute;
-    content: '\f061';
-    font-family: 'Font Awesome 5 Free';
+    content: "\f061";
+    font-family: "Font Awesome 5 Free";
     font-weight: 900;
     color: #000000;
     left: 1px;
 }
 
 .main-news .mn-list ul li a:hover {
-    color: #FF6F61;
+    color: #ff6f61;
 }
-
 
 /**********************************/
 /********* Breadcrumb CSS *********/
@@ -766,7 +779,6 @@ button.btn:hover {
 .breadcrumb-wrap .breadcrumb .breadcrumb-item.active {
     color: #353535;
 }
-
 
 /**********************************/
 /********* Single News CSS ********/
@@ -826,12 +838,16 @@ button.btn:hover {
 
 .single-news .sn-slider .sn-title {
     position: absolute;
-    top: 0; 
+    top: 0;
     right: 0;
-    bottom: 0; 
+    bottom: 0;
     left: 0;
     padding: 15px 10px 15px 20px;
-    background-image: linear-gradient(rgba(0, 0, 0, .0), rgba(0, 0, 0, .3), rgba(0, 0, 0, .9));
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.9)
+    );
     display: flex;
     align-items: flex-end;
 }
@@ -842,11 +858,11 @@ button.btn:hover {
     color: #ffffff;
     font-size: 18px;
     font-weight: 400;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .single-news .sn-slider .sn-title a:hover {
-    color: #FF6F61;
+    color: #ff6f61;
 }
 
 .single-news .sn-slider .slick-prev,
@@ -855,7 +871,7 @@ button.btn:hover {
     width: 28px;
     height: 28px;
     z-index: 1;
-    transition: .5s;
+    transition: 0.5s;
     color: #ffffff;
     background: #000000;
     border-radius: 4px;
@@ -874,7 +890,7 @@ button.btn:hover {
 .single-news .sn-slider .slick-next:hover,
 .single-news .sn-slider .slick-next:focus {
     color: #ffffff;
-    background: #FF6F61;
+    background: #ff6f61;
 }
 
 .single-news .sn-slider .slick-prev::before,
@@ -892,7 +908,6 @@ button.btn:hover {
 .single-news .sn-slider .slick-next::before {
     content: "\f105";
 }
-
 
 /**********************************/
 /*********** Sidebar CSS **********/
@@ -942,11 +957,11 @@ button.btn:hover {
     color: #000000;
     font-size: 16px;
     font-weight: 400;
-    transition: all .3s;
+    transition: all 0.3s;
 }
 
 .sidebar .news-list .nl-item .nl-title a:hover {
-    color: #FF6F61;
+    color: #ff6f61;
 }
 
 .sidebar .sidebar-widget .tab-news {
@@ -963,7 +978,7 @@ button.btn:hover {
 .sidebar .tab-news .nav.nav-pills .nav-link:hover,
 .sidebar .tab-news .nav.nav-pills .nav-link.active {
     color: #ffffff;
-    background: #FF6F61;
+    background: #ff6f61;
 }
 
 .sidebar .tab-news .tab-content {
@@ -997,11 +1012,11 @@ button.btn:hover {
     color: #000000;
     font-size: 16px;
     font-weight: 400;
-    transition: all .3s;
+    transition: all 0.3s;
 }
 
 .sidebar .tab-news .tn-title a:hover {
-    color: #FF6F61;
+    color: #ff6f61;
 }
 
 .sidebar .sidebar-widget .category {
@@ -1015,11 +1030,11 @@ button.btn:hover {
 }
 
 .sidebar .category ul li {
-    margin: 0 0 12px 22px; 
+    margin: 0 0 12px 22px;
 }
 
 .sidebar .category ul li:last-child {
-    margin-bottom: 0; 
+    margin-bottom: 0;
 }
 
 .sidebar .category ul li a {
@@ -1029,13 +1044,13 @@ button.btn:hover {
 }
 
 .sidebar .category ul li a:hover {
-    color: #FF6F61;
+    color: #ff6f61;
 }
 
 .sidebar .category ul li::before {
     position: absolute;
-    content: '\f061';
-    font-family: 'Font Awesome 5 Free';
+    content: "\f061";
+    font-family: "Font Awesome 5 Free";
     font-weight: 900;
     color: #000000;
     left: 1px;
@@ -1062,8 +1077,8 @@ button.btn:hover {
 
 .sidebar .sidebar-widget .tags a:hover {
     color: #ffffff;
-    background: #FF6F61;
-    border: 1px solid #FF6F61;
+    background: #ff6f61;
+    border: 1px solid #ff6f61;
 }
 
 .sidebar .sidebar-widget .image a {
@@ -1074,7 +1089,7 @@ button.btn:hover {
 
 .sidebar .sidebar-widget .image img {
     max-width: 100%;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .sidebar .sidebar-widget .image img:hover {
@@ -1082,7 +1097,6 @@ button.btn:hover {
     filter: blur(3px);
     -webkit-filter: blur(3px);
 }
-
 
 /**********************************/
 /********** Contact CSS ***********/
@@ -1130,14 +1144,13 @@ button.btn:hover {
 }
 
 .contact .social a:hover {
-    background: #FF6F61;
-    border-color: #FF6F61;
+    background: #ff6f61;
+    border-color: #ff6f61;
 }
 
 .contact .social a:hover i {
     color: #ffffff;
 }
-
 
 /**********************************/
 /********** Footer CSS ************/
@@ -1174,11 +1187,11 @@ button.btn:hover {
 }
 
 .footer .footer-widget ul li {
-    margin-bottom: 12px; 
+    margin-bottom: 12px;
 }
 
 .footer .footer-widget ul li:last-child {
-    margin-bottom: 0; 
+    margin-bottom: 0;
 }
 
 .footer .footer-widget ul li a {
@@ -1189,15 +1202,15 @@ button.btn:hover {
 }
 
 .footer .footer-widget ul li a::before {
-    content: '\f061';
-    font-family: 'Font Awesome 5 Free';
+    content: "\f061";
+    font-family: "Font Awesome 5 Free";
     font-weight: 900;
     padding-right: 5px;
 }
 
 .footer .footer-widget ul li a:hover {
     padding-left: 10px;
-    color: #FF6F61;
+    color: #ff6f61;
 }
 
 .footer .contact-info p {
@@ -1233,7 +1246,7 @@ button.btn:hover {
 }
 
 .footer .social a:hover {
-    background: #FF6F61;
+    background: #ff6f61;
 }
 
 .footer .social a:hover i {
@@ -1274,14 +1287,13 @@ button.btn:hover {
 }
 
 .footer .newsletter .btn:hover {
-    background: #FF6F61;
+    background: #ff6f61;
 }
 
 .footer .newsletter input:focus,
 .footer .newsletter .btn:focus {
     box-shadow: none;
 }
-
 
 /**********************************/
 /******** Footer Menu CSS *********/
@@ -1310,7 +1322,7 @@ button.btn:hover {
 }
 
 .footer-menu .f-menu a:hover {
-    color: #FF6F61;
+    color: #ff6f61;
 }
 
 .footer-menu .f-menu a:last-child {
@@ -1318,7 +1330,6 @@ button.btn:hover {
     padding-right: 0;
     border-right: none;
 }
-
 
 /**********************************/
 /******** Footer Bottom CSS *******/
@@ -1357,6 +1368,6 @@ button.btn:hover {
 @media (max-width: 768.98px) {
     .footer-bottom .copyright,
     .footer-bottom .template-by {
-        text-align: center; 
-    } 
+        text-align: center;
+    }
 }

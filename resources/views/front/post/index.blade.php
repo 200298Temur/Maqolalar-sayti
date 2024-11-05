@@ -1,14 +1,13 @@
 @extends('layouts.main') 
 
 @section('title', 'Index Sahifa') 
-{{-- @section('categories',$categories) --}}
 @section('content')
     <div class="cat-news">
         <div class="container">            
             <div style="display: grid; 	grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px;" class="grid grid-cols-4 gap-4 mt-3 p-3">
                 @if(!$posts->isEmpty())
                     @foreach ($posts as $post)
-                    <div class="">
+                    <div class="card">
                         <div class="cn-img">
                             @if(is_null($post->image))
                                 <img style="height: 250px" alt="web" src="{{asset('img/download.png')}}" />                                
@@ -16,9 +15,12 @@
                                 <img style="height: 250px" src="{{asset($post->image)}}" alt="boshqa" />
                             @endif
                             <div class="cn-title">
-                                <a href="">{{$post->title}}</a>
+                                <a href="{{route('front.see',$post->id)}}">{{$post->title}}</a>
                             </div>
                         </div>
+                            <div>
+                                <p class="text">{{$post->subtitle}}</p>
+                            </div>
                     </div>   
                     @endforeach
                 @else
