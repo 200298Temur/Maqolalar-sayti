@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('posts.update',$post->id) }}" method="post">
+                    <form action="{{ route('posts.update',$post->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <!-- Title Field -->
                         <label for="title" class="text-lg font-medium">Title</label>
@@ -46,6 +46,10 @@
                             @enderror
                         </div>
                         
+                        <div class="my-3">
+                            <label for="image" class="text-lg font-medium">Upload Image</label>
+                            <input type="file" name="image" class="form-control" /> 
+                        </div>
                         
                         <!-- Content Field -->
                         <label for="text" class="text-lg font-medium">Content</label>

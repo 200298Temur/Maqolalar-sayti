@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('posts.store') }}" method="post">
+                    <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <!-- Title Field -->
                         <label for="title" class="text-lg font-medium">Title</label>
@@ -24,6 +24,8 @@
                                 <p class="text-red-400 font-medium">{{ $message }}</p>
                             @enderror
                         </div>
+
+                        <!-- Categories Selection -->
                         <div class="grid grid-cols-4 mb-4">
                             @if ($categories->isNotEmpty())
                                 @foreach ($categories as $category)
@@ -35,7 +37,7 @@
                                 @endforeach
                             @endif
                         </div>
-                        
+
                         <!-- Subtitle Field -->
                         <label for="subtitle" class="text-lg font-medium">Subtitle</label>
                         <div class="my-3">
@@ -45,38 +47,40 @@
                                 <p class="text-red-400 font-medium">{{ $message }}</p>
                             @enderror
                         </div>
-                        
-                        
-                        
-                        <label for="text" class="text-lg font-medium">Content</label> 
-                        <div class="flex flex-col gap-3 mb-3">
-                            <div>
-                                <textarea name="content" placeholder="Content" id="editor" cols="30" rows="10" 
-                                          class="border-gray-300 shadow-sm w-1/2 rounded-lg">{{ old('content') }}</textarea>
-                            </div>
-    
-                            <!-- Author Display -->
-                            
-                            <div>
-                                <select value="{{ old('draft') }}" name="publish" class="form-control" id="exampleFormControlSelect1">
-                                    <option value="draft">Draft</option>
-                                    <option value="publish">Publish</option>
-                                </select>
-                                {{-- <input type="checkbox" id="chek">
-                                <label for="chek">Ruxsat</label> --}}
-                                <input type="date" value="{{ old('Attime') }}" name="Attime" class="ml-10 rounded-lg border-gray-300">
 
-                                <input type="file" name="image" id="image">
-                                @error('image')
-                                    <div class="text-red-500">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div>
-                                <p class="text-lg font-medium">Author : {{ Auth::user()->name }}</p>
-                            </div>
+                        <!-- Image Upload -->
+                        <div class="my-3">
+                            <label for="image" class="text-lg font-medium">Upload Image</label>
+                            <input type="file" name="image" class="form-control" />
+                            {{-- @error('image')
+                                <p class="text-red-400 font-medium">{{ $message }}</p>
+                            @enderror --}}
                         </div>
+
+                        <!-- Content Field -->
+                        <label for="content" class="text-lg font-medium">Content</label>
+                        <div class="my-3">
+                            <textarea name="content" placeholder="Content" id="editor" cols="30" rows="10" 
+                                      class="border-gray-300 shadow-sm w-full rounded-lg">{{ old('content') }}</textarea>
+                            @error('content')
+                                <p class="text-red-400 font-medium">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Publish and Date Fields -->
+                        <div class="flex items-center gap-4 mb-3">
+                            <select name="publish" class="form-control">
+                                <option value="draft" {{ old('publish') === 'draft' ? 'selected' : '' }}>Draft</option>
+                                <option value="publish" {{ old('publish') === 'publish' ? 'selected' : '' }}>Publish</option>
+                            </select>
+                            <input type="date" value="{{ old('Attime') }}" name="Attime" class="ml-4 rounded-lg border-gray-300">
+                        </div>
+
+                        <!-- Author Display -->
+                        <p class="text-lg font-medium">Author: {{ Auth::user()->name }}</p>
+
                         <!-- Submit Button -->
-                        <button class="bg-gray-500 hover:bg-gray-400 text-md rounded-md text-white px-5 py-2">
+                        <button type="submit" class="bg-gray-500 hover:bg-gray-400 text-md rounded-md text-white px-5 py-2">
                             Submit
                         </button>                                               
                     </form>
@@ -85,22 +89,20 @@
         </div>
     </div>
 
+    <!-- CKEditor Initialization -->
     <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
     <script>
-        
         ClassicEditor
-            .create( document.querySelector( '#editor' ),{
-                    ckfinder: {
-                        uploadUrl: '{{route('posts.uploadMedia').'?_token='.csrf_token()}}',
-            } })
-            .then( editor => {
-                console.log( 'Editor was initialized', editor );
-                question_editor = editor;
-                } )
-            .catch( error => {
-                console.error( error );
-            } );
-
+            .create(document.querySelector('#editor'), {
+                ckfinder: {
+                    uploadUrl: '{{ route('posts.uploadMedia') . '?_token=' . csrf_token() }}',
+                }
+            })
+            .then(editor => {
+                console.log('Editor was initialized', editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
-        
 </x-app-layout>

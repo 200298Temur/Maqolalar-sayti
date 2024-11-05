@@ -28,46 +28,50 @@ class PostController extends Controller
             'categories'=>$categories
         ]);
     }
+   
     public function store(Request $request)
     {
+        // Validation
         $validator = Validator::make($request->all(), [
-            'title' => 'required|min:5',
+            'title' => 'required|min:3',
             'subtitle' => 'required|min:5',
             'content' => 'required|min:10',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
-        if ($validator->passes()) {
-            $imageName = $this->uploadImage($request->image);
-            $post = new Post();
-            $post->title = $request->title;
-            $post->subtitle = $request->subtitle;
-            $post->content = $request->content;
-            $post->publish = $request->publish === 'publish' ? 1 : 0;
-            $post->Attime = $request->Attime ? \Carbon\Carbon::parse($request->Attime)->format('Y-m-d') : now()->format('Y-m-d');    
-            $post->author_id = auth()->user()->id;
-            $post->image =$imageName;
-            $post->save();
+
+        $post = new Post();
+        if($request->has('image')){
+            $file=$request->file('image');
+            $extension=$file->getClientOriginalExtension();
+
+            $filename=time().'.'.$extension;
+
+            $path='uploads/posts/';
+            $file->move($path,$filename); 
+            $post->image=$path.$filename;
+        }
+        
+        // Creating a new Post instance
+        $post->title = $request->title;
+        $post->subtitle = $request->subtitle;
+        $post->content = $request->content;
+        $post->publish = $request->publish === 'publish' ? 1 : 0;
+        $post->Attime = $request->Attime ? \Carbon\Carbon::parse($request->Attime)->format('Y-m-d') : now()->format('Y-m-d');
+        $post->author_id = auth()->user()->id;
+        $post->save();
+
+        // Attaching categories if available
+        if ($request->has('categories')) {
+            $post->categories()->attach($request->categories);
+        }
+
+        return redirect()->route('posts.index')->with('success', 'Post created successfully');
+    }
 
     
-            // dd($request->categories);
-            if (!empty($request->categories)) {
-                $post->categories()->attach($request->categories);
-            }
-            
+
     
-            return redirect()->route('posts.index')->with('success', 'Post created successfully');
-        } else {
-            return redirect()->route('posts.create')->withInput()->withErrors($validator);
-        }
-    }
     
-    protected function uploadImage($image)
-    {
-        $imageName = 'front' . time() . '.' . $image->extension();
-        $image->move(public_path('storage/images'), $imageName);
-        return $imageName;
-    }
     public function destroy(Request $request){
         $post=Post::find($request->id);
         if($post==null){
@@ -96,13 +100,23 @@ class PostController extends Controller
             'subtitle' => 'required|min:5',
             'content' => 'required|min:10',
         ]);
+
+        if($request->has('image')){
+            $file=$request->file('image');
+            $extension=$file->getClientOriginalExtension();
+
+            $filename=time().'.'.$extension;
+
+            $path='uploads/posts/';
+            $file->move($path,$filename); 
+            $post->image=$path.$filename;
+        }
         if ($validator->passes()) {
             $post->title = $request->title;
             $post->subtitle = $request->subtitle;
             $post->content = $request->content;
             $post->publish = $request->publish === 'publish' ? 1 : 0;
             $post->Attime = $request->Attime ? \Carbon\Carbon::parse($request->Attime)->format('Y-m-d') : now()->format('Y-m-d');    
-
             $post->author_id = auth()->user()->id;
             // dd($post);
             $post->save();
