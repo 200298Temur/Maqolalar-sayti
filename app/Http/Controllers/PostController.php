@@ -30,26 +30,23 @@ class PostController extends Controller
     }
     public function store(Request $request)
     {
-        // Validate the input
         $validator = Validator::make($request->all(), [
             'title' => 'required|min:5',
             'subtitle' => 'required|min:5',
             'content' => 'required|min:10',
-            // 'categories' => 'array' // categories maydonini array qilib ko'rsatilganini tekshiradi
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
     
         if ($validator->passes()) {
+            $imageName = $this->uploadImage($request->image);
             $post = new Post();
             $post->title = $request->title;
             $post->subtitle = $request->subtitle;
             $post->content = $request->content;
-    
-            // Publish ustunini draft tanloviga qarab belgilash
             $post->publish = $request->publish === 'publish' ? 1 : 0;
-    
-            // Agar time qiymati bo'lmasa, bugungi sanani oling
             $post->Attime = $request->Attime ? \Carbon\Carbon::parse($request->Attime)->format('Y-m-d') : now()->format('Y-m-d');    
             $post->author_id = auth()->user()->id;
+            $post->image =$imageName;
             $post->save();
 
     
@@ -65,7 +62,12 @@ class PostController extends Controller
         }
     }
     
-
+    protected function uploadImage($image)
+    {
+        $imageName = 'front' . time() . '.' . $image->extension();
+        $image->move(public_path('storage/images'), $imageName);
+        return $imageName;
+    }
     public function destroy(Request $request){
         $post=Post::find($request->id);
         if($post==null){

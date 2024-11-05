@@ -65,6 +65,11 @@
                                 {{-- <input type="checkbox" id="chek">
                                 <label for="chek">Ruxsat</label> --}}
                                 <input type="date" value="{{ old('Attime') }}" name="Attime" class="ml-10 rounded-lg border-gray-300">
+
+                                <input type="file" name="image" id="image">
+                                @error('image')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div>
                                 <p class="text-lg font-medium">Author : {{ Auth::user()->name }}</p>
