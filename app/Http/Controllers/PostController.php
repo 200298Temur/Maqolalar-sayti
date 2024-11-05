@@ -16,6 +16,22 @@ class PostController extends Controller
             'posts' => $posts
         ]);
     }
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        
+        $posts = Post::where('title', 'like', "%$search%")
+                    ->orWhere('subtitle', 'like', "%$search%")
+                    ->orWhere('content', 'like', "%$search%")
+                    ->with('author')
+                    ->latest()
+                    ->paginate(10); // Sahifada 10 ta post ko'rsatish
+
+        return view('post.list', ['posts' => $posts]);
+    }
+
+
+
     public function show(string $id){
         $post=Post::find($id);
         return view('post.show',[

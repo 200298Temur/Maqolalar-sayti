@@ -65,10 +65,13 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4">
+                    <div class="col-lg-3 col-md-4" style="position: relative">
                         <div class="b-search">
                             <input type="text" placeholder="Search">
-                            <button><i class="fa fa-search"></i></button>
+                            <button id="search__btn"><i class="fa fa-search"></i></button>
+                        </div>
+                        <div id="box" style=" display: none;">
+    
                         </div>
                     </div>
                     
@@ -230,6 +233,53 @@
                     link.classList.remove('active'); 
                 }
             });
-        </script>
+            const fake = [
+                {
+                    name: "title"
+                },
+                {
+                    name: "titl2"
+                },
+                {
+                    name: "title3"
+                },
+            ]
+            const searchBtn = document.getElementById("search__btn");
+            
+            window.addEventListener('click', function(e){   
+                if (document.getElementById('box').contains(e.target)){
+                // Clicked in box
+                
+                console.log("inside box")
+                closeBox()
+            } else{
+                
+                // Clicked outside the box
+                if(searchBtn.contains(e.target)) {
+                    isClicked = true
+                    console.log("tar box") 
+                    const box = document.getElementById("box")
+                    box.innerHTML = ""
+                    box.style = "display: block; border: 1px solid red; position: absolute; z-index: 10; background: white; width: calc(100% - 30px); padding-left: 10px;"
+                    fake.forEach((item) => {
+                        const a = document.createElement("a")
+                        a.style = "display: block; margin: 5px 0"
+                        // a.href = item.name
+                        a.innerText = item.name
+                        box.appendChild(a)
+                    })
+
+                } else {
+                    console.log("sdfsd")
+                    closeBox()
+                }
+                
+            }
+            });
+
+            function closeBox() {
+                document.getElementById('box').style="display: none"
+            }
+            </script>
     </body>
-</html>
+    </html>

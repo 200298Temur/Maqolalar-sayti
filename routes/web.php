@@ -31,6 +31,7 @@ Route::prefix('front')->group(function(){
 
 
 Route::post('posts/upload', [PostController::class, 'upload'])->name('posts.uploadMedia');
+Route::get('posts/search',[PostController::class,'search'])->name('posts.search');
 
 Route::prefix('admin')->middleware('auth')->group(function () {    
     Route::get('posts/show/{id}', [PostController::class, 'show'])->name('posts.show'); 
@@ -40,6 +41,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('posts/{id}/edit',[PostController::class,'edit'])->name('posts.edit');
     Route::post('posts/{id}',[PostController::class,'update'])->name('posts.update');
     Route::get('posts/{id}',[PostController::class,'destroy'])->name('posts.destroy');
+    
     
     Route::get('categories',[CategoryController::class,'index'])->name('categories.index');
     Route::get('categories/create',[CategoryController::class,'create'])->name('categories.create');

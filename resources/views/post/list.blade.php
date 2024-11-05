@@ -10,9 +10,19 @@
             </a>
         </div>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <form action="{{route('posts.search')}}" method="GET">
+                @csrf
+                <input type="text" name="search" placeholder="Search Products">
+                <button type="submit" class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
+                    Search
+                </button>
+                {{-- <a href="{{ route('posts.index') }}" 
+                class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
+                    Clear
+                </a> --}}
+            </form>
             <x-message></x-message>
             <table class="w-full">
                 <thead class="bg-gray-50">
@@ -58,9 +68,11 @@
                     @endif
                 </tbody>
             </table>
-            <div class="my-3">
-                {{ $posts->links() }}
-            </div>
+            @if ($posts->count() > 0)
+                <div class="my-3">
+                    {{ $posts->links() }}
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>
