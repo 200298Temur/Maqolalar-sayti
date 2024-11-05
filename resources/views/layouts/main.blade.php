@@ -58,13 +58,13 @@
                             </a>
                         </div>
                     </div>
-                    {{-- <div class="col-lg-6 col-md-4">
+                     <div class="col-lg-6 col-md-4">
                         <div class="b-ads">
                             <a href="https://htmlcodex.com">
                                 <img src="{{asset('img/ads-1.jpg')}}" alt="Ads">
                             </a>
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="col-lg-3 col-md-4">
                         <div class="b-search">
                             <input type="text" placeholder="Search">
@@ -88,9 +88,12 @@
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
-                            <a href="#" class="nav-item nav-link">Home</a>
-                            <a href="#" class="nav-item nav-link">Home</a>
-                        </div>
+                            <a href="{{route('front.index')}}" class="nav-item nav-link">Home</a>
+                            {{-- <a href="#" class="nav-item nav-link">Home</a> --}}                        
+                            @foreach ($categories as $category)
+                            <a href="{{route('front.show',$category->id)}}" class="nav-item nav-link">{{$category->name}}</a>
+                            @endforeach
+                        </div>   
                         <div class="social ml-auto">
                             <a href=""><i class="fab fa-twitter"></i></a>
                             <a href=""><i class="fab fa-facebook-f"></i></a>

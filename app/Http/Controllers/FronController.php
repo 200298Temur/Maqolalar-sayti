@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,25 @@ class FronController extends Controller
      */
     public function index()
     {
-        $posts=Post::where('publish','1')->orderBy('created_at','desc')->get();
-        // dd($posts);
-        return view('front.post.index',[
-            'posts'=>$posts
+        $posts = Post::where('publish', '1')->orderBy('created_at', 'desc')->get();
+        $categories = Category::orderBy('name', 'desc')->get();
+        // dd($categories);
+        return view('front.post.index', [
+            'posts' => $posts,
+            'categories' => $categories // Bu bilan main.blade.php ga ham uzatiladi
+        ]);
+    }
+    public function show(string $id)
+    {   
+        $posts = Post::where('publish', '1')
+                 ->where('id', '=', $id)
+                 ->orderBy('created_at', 'desc')
+                 ->get();
+        $categories = Category::orderBy('name', 'desc')->get();
+        // dd($categories);
+        return view('front.post.index', [
+            'posts' => $posts,
+            'categories' => $categories // Bu bilan main.blade.php ga ham uzatiladi
         ]);
     }
 
@@ -38,10 +54,7 @@ class FronController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.

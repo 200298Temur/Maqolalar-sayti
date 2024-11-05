@@ -1,7 +1,7 @@
 @extends('layouts.main') 
 
 @section('title', 'Index Sahifa') 
-
+{{-- @section('categories',$categories) --}}
 @section('content')
     <div class="cat-news">
         <div class="container">            
@@ -11,9 +11,9 @@
                     <div class="">
                         <div class="cn-img">
                             @if(is_null($post->image))
-                                <img style="height: 300px" alt="web" src="{{asset('img/download.png')}}" />                                
+                                <img style="height: 250px" alt="web" src="{{asset('img/download.png')}}" />                                
                             @else
-                                <img style="height: 300px" src="{{asset($post->image)}}" alt="boshqa" />
+                                <img style="height: 250px" src="{{asset($post->image)}}" alt="boshqa" />
                             @endif
                             <div class="cn-title">
                                 <a href="">{{$post->title}}</a>
@@ -24,9 +24,9 @@
                 @else
                     <div class="">
                         <div class="cn-img">
-                            <img src="{{asset('img/download.png')}}" />
+                            <img style="height: 250px" src="{{asset('img/download.png')}}" />
                             <div class="cn-title">
-                                <a href="">Lorem ipsum dolor sit</a>
+                                <a href="">Post mavjud emas!</a>
                             </div>
                         </div>
                     </div>        
