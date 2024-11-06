@@ -56,7 +56,13 @@
                                 <p class="text-red-400 font-medium">{{ $message }}</p>
                             @enderror --}}
                         </div>
-
+     
+                        <div class="my-3">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option value="eng" {{ old('lang') === 'eng' ? 'selected' : '' }} >eng</option>
+                                <option value="uz" {{ old('lang') === 'uz' ? 'selected' : '' }} >uz</option>
+                            </select>
+                        </div> 
                         <!-- Content Field -->
                         <label for="content" class="text-lg font-medium">Content</label>
                         <div class="my-3">

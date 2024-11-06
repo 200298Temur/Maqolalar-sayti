@@ -23,7 +23,13 @@
                             @error('name')
                                 <p class="text-red-400 font-medium">{{ $message }}</p>
                             @enderror
-                        </div>                    
+                        </div>     
+                        <div class="my-3">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option value="eng" {{ old('publish', $post->lang) === 'eng' ? 'selected' : '' }}>eng</option>
+                                <option value="uz" {{ old('publish', $post->lang) === 'uz' ? 'selected' : '' }}>uz</option>        
+                            </select>
+                        </div>                                       
                         <!-- Submit Button -->
                         <button class="bg-gray-500 hover:bg-gray-400 text-xs rounded-md text-white px-3 py-2">
                             Update

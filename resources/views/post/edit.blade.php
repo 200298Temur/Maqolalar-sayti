@@ -50,7 +50,12 @@
                             <label for="image" class="text-lg font-medium">Upload Image</label>
                             <input type="file" name="image" class="form-control" /> 
                         </div>
-                        
+                        <div class="my-3">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option value="eng" {{ old('publish', $post->lang) === 'eng' ? 'selected' : '' }}>eng</option>
+                                <option value="uz" {{ old('publish', $post->lang) === 'uz' ? 'selected' : '' }}>uz</option>        
+                            </select>
+                        </div> 
                         <!-- Content Field -->
                         <label for="text" class="text-lg font-medium">Content</label>
                         <div class="my-3">
