@@ -27,7 +27,7 @@ class PostController extends Controller
                     ->latest()
                     ->paginate(10); // Sahifada 10 ta post ko'rsatish
 
-        return view('post.list', ['posts' => $posts]);
+        return view('post.list', ['posts' => $posts,'search'=>$search]);
     }
 
 
