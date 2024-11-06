@@ -24,11 +24,13 @@ class CategoryController extends Controller
     public  function store(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3',
+            'lang' => 'required',
         ]);
     
         if ($validator->passes()) {
             $post = new Category();
             $post->name = $request->name;
+            $post->lang = $request->lang;
             
             $post->save();
 
@@ -53,6 +55,7 @@ class CategoryController extends Controller
     
         if ($validator->passes()) {
             $post->name = $request->name;
+            $post->lang= $request->lang;
             
             $post->save();
 

@@ -71,6 +71,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->content = $request->content;
+        $post->lang = $request->lang;
         $post->publish = $request->publish === 'publish' ? 1 : 0;
         $post->Attime = $request->Attime ? \Carbon\Carbon::parse($request->Attime)->format('Y-m-d') : now()->format('Y-m-d');
         $post->author_id = auth()->user()->id;
@@ -131,6 +132,7 @@ class PostController extends Controller
             $post->title = $request->title;
             $post->subtitle = $request->subtitle;
             $post->content = $request->content;
+            $post->lang = $request->lang;
             $post->publish = $request->publish === 'publish' ? 1 : 0;
             $post->Attime = $request->Attime ? \Carbon\Carbon::parse($request->Attime)->format('Y-m-d') : now()->format('Y-m-d');    
             $post->author_id = auth()->user()->id;

@@ -58,9 +58,9 @@
                         </div>
      
                         <div class="my-3">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option value="eng" {{ old('lang') === 'eng' ? 'selected' : '' }} >eng</option>
-                                <option value="uz" {{ old('lang') === 'uz' ? 'selected' : '' }} >uz</option>
+                            <select class="form-control">
+                                <option value="eng">eng</option>
+                                <option value="uz" >uz</option>
                             </select>
                         </div> 
                         <!-- Content Field -->

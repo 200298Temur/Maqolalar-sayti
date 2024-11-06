@@ -26,8 +26,8 @@
                         </div> 
                         <div class="my-3">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option value="eng" {{ old('lang') === 'eng' ? 'selected' : '' }} >eng</option>
-                                <option value="uz" {{ old('lang') === 'uz' ? 'selected' : '' }} >uz</option>
+                                <option value="eng" {{ old('lang') }} >eng</option>
+                                <option value="uz" {{ old('lang')}} >uz</option>
                             </select>
                         </div>            
                         <!-- Submit Button -->
