@@ -2,11 +2,11 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Maqolalar') }}
+                @lang('message.posts')
             </h2>
             <a href="{{ route('posts.create') }}" 
                class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
-                Create
+               @lang('message.create')
             </a>
         </div>
     </x-slot>
@@ -15,20 +15,20 @@
             <form action="{{ route('posts.search') }}" method="GET">
                 <input value="{{ request('search', $post->search ?? '') }}" type="text" name="search" placeholder="Search Products">
                 <button type="submit" class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2"
-                >Search</button>
+                >@lang('message.search')</button>
             </form>            
             <x-message></x-message>
             <table class="w-full">
                 <thead class="bg-gray-50">
                     <tr class="border-b">
                         <th class="px-6 py-3 text-left" width="60">#</th>
-                        <th class="px-6 py-3 text-left">Title</th>
-                        <th class="px-6 py-3 text-left">Category</th>
-                        <th class="px-6 py-3 text-left">Subtitle</th>
-                        <th class="px-6 py-3 text-left">Author</th>
-                        <th class="px-6 py-3 text-left" width="180">Created</th>
-                        <th class="px-6 py-3 text-left">Condition</th>
-                        <th class="px-6 py-3 text-center" width="180">Action</th>
+                        <th class="px-6 py-3 text-left"> @lang('message.title')</th>
+                        <th class="px-6 py-3 text-left"> @lang('message.category')</th>
+                        <th class="px-6 py-3 text-left">@lang('message.subtitle')</th>
+                        <th class="px-6 py-3 text-left">@lang('message.author')</th>
+                        <th class="px-6 py-3 text-left" width="180">@lang('message.created')</th>
+                        <th class="px-6 py-3 text-left">@lang('message.condition')</th>
+                        <th class="px-6 py-3 text-center" width="250">@lang('message.action')</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white">
@@ -48,15 +48,16 @@
                             </td>
                             <td class="px-6 py-4 text-center"> 
                                 <a href="{{ route('posts.edit', $post->id) }}" 
-                                   class="bg-indigo-700	 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">Edit</a>                                 
-                                <a href="{{ route('posts.destroy', $post->id) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">Delete</a>   
+                                   class="bg-indigo-700	 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">@lang('message.edit')</a>                                 
+                                <a href="{{ route('posts.destroy', $post->id) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">@lang('message.delete')</a>   
                             </td>
                         </tr>
                         @endforeach
                     @else
                         <tr>
                             <td colspan="6" class="px-6 py-4 text-center text-gray-500">
-                                No posts found.
+                               
+                                @lang('message.no posts found')
                             </td>
                         </tr>
                     @endif
