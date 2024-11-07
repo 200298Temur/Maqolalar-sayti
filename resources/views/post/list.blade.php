@@ -27,6 +27,7 @@
                         <th class="px-6 py-3 text-left">@lang('message.subtitle')</th>
                         <th class="px-6 py-3 text-left">@lang('message.author')</th>
                         <th class="px-6 py-3 text-left" width="180">@lang('message.created')</th>
+                        <th class="px-6 py-3 text-left">@lang('message.language')</th>
                         <th class="px-6 py-3 text-left">@lang('message.condition')</th>
                         <th class="px-6 py-3 text-center" width="250">@lang('message.action')</th>
                     </tr>
@@ -46,6 +47,9 @@
                             <td class="px-6 py-4 text-left">{{ $post->author->name }}</td>
                             <td class="px-6 py-4 text-left">
                                 {{ \Carbon\Carbon::parse($post->Attime)->format('d M, Y') }}
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <p>{{ $post->lang === 'uz' ? 'Uzbek' : 'English' }}</p>
                             </td>
                             <td class="px-6 py-4 text-center">
                                 <p>{{ $post->publish === '0' ? 'Draft' : 'Publish' }}</p>

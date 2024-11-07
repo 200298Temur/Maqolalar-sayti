@@ -54,11 +54,12 @@
                         </div>
 
                         <label for="exampleFormControlSelect1" class="text-lg font-medium">@lang('message.language')</label>
-                        <div class="my-3" >
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option value="en" {{ old('publish', $post->lang) === 'en' ? 'selected' : '' }}>English</option>
-                                <option value="uz" {{ old('publish', $post->lang) === 'uz' ? 'selected' : '' }}>Uzbek</option>        
-                            </select>
+                                                   
+                        <class="my-3">
+                            <select class="form-control" name="lang" id="exampleFormControlSelect2">
+                                <option value="en" {{ old('lang') == 'en' ? 'selected' : '' }}>English</option>
+                                <option value="uz" {{ old('lang') == 'uz' ? 'selected' : '' }}>Uzbek</option>
+                            </select>                            
                         </div> 
                         <!-- Content Field -->
                         <label for="text" class="text-lg font-medium">@lang('message.content')</label>
@@ -66,8 +67,9 @@
                             <textarea name="content" placeholder="Content" id="editor" cols="30" rows="10" 
                                       class="border-gray-300 shadow-sm w-1/2 rounded-lg">{{ old('content',$post->content) }}</textarea>
                         </div>
+                        
                         <div>
-                            <select name="publish" class="form-control" id="exampleFormControlSelect1">
+                            <select name="publish" class="form-control" id="exampleFormControlSelect2">
                                 <option value="draft" {{ old('publish', $post->publish) === '0' ? 'selected' : '' }}>@lang('message.draft')</option>
                                 <option value="publish" {{ old('publish', $post->publish) === '1' ? 'selected' : '' }}>@lang('message.publish')</option>
                             </select>

@@ -43,13 +43,14 @@ class CategoryController extends Controller
 
     public function edit(string $id){
         $category=Category::find($id);
+        // dd($category);
         return view('category.edit',[
             'category'=>$category
         ]);
     }
 
     public  function update(Request $request,string $id){
-        
+        // dd($request);
         $post =Category::find($id);
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3',

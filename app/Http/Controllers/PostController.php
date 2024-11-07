@@ -121,6 +121,7 @@ class PostController extends Controller
 
     public function update(Request $request,string $id){
         $post =Post::find($id);
+        // dd($request);
         $validator = Validator::make($request->all(), [
             'title' => 'required|min:5',
             'subtitle' => 'required|min:5',
