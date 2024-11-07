@@ -4,6 +4,7 @@ use App\Http\Controllers\FronController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\LocalizationMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('locale/{lang}', [LocaleController::class, 'setLocale'])->name('locale.set');
@@ -12,7 +13,7 @@ Route::get('/', [FronController::class, 'index'])->name('front.index');
 Route::get('posts/show/{id}', [FronController::class, 'show'])->name('front.show');
 Route::get('posts/see/{id}', [FronController::class, 'PostSee'])->name('front.see');
 
-Route::prefix('admin')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->middleware(['auth', LocalizationMiddleware::class])->group(function () {
     Route::get('/', action: function () {
         return view('dashboard');
     })->middleware('verified')->name('admin.dashboard');

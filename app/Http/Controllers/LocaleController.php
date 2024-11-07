@@ -14,7 +14,7 @@ class LocaleController extends Controller
 
         if (in_array($lang, $availableLocales)) {
             App::setLocale($lang);
-            Session::put('locale', $lang);  // Sessiyada tilni saqlash
+            Session::put('locale', $lang);// Sessiyada tilni saqlash
         }
 
         // Foydalanuvchini qayta yo'naltirish

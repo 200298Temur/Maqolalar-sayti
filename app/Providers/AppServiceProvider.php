@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $locale = Session::get('locale', 'en'); // Sessiyadan yoki standart til
+        // $locale = Session::get('locale', 'uz'); // Sessiyadan yoki standart til
         // App::setLocale($locale);
     }
 }
