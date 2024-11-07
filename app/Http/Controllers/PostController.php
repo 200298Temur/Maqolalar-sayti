@@ -47,7 +47,7 @@ class PostController extends Controller
    
     public function store(Request $request)
     {
-        // Validation
+        // dd($request);
         $validator = Validator::make($request->all(), [
             'title' => 'required|min:3',
             'subtitle' => 'required|min:5',
@@ -100,15 +100,24 @@ class PostController extends Controller
     }
 
     public function edit(string $id){
-        $post=Post::find($id);
-        $categories=Category::orderBy('name','asc')->get();
-        $hasCategories=$post->categories->pluck('name');
-        return view('post.edit',[
-            'post'=>$post,
-            'categories'=>$categories,
-            'hasCategories'=>$hasCategories
+        $post = Post::find($id);
+        // dd($id);
+        if (!$post) {
+            // Handle the case where the post is not found (e.g., redirect or show a message)
+            return redirect()->route('posts.index')->with('error', 'Post not found');
+        }
+    
+        $categories = Category::orderBy('name', 'asc')->get();
+        $hasCategories = $post->categories->pluck('name');
+    
+        return view('post.edit', [
+            'post' => $post,
+            'categories' => $categories,
+            'hasCategories' => $hasCategories,
+            'locale' => app()->getLocale()
         ]);
     }
+    
 
     public function update(Request $request,string $id){
         $post =Post::find($id);

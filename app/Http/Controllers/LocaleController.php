@@ -8,11 +8,17 @@ use Illuminate\Support\Facades\Session;
 
 class LocaleController extends Controller
 {
-    public function setLocale($lang){
-        if(in_array($lang,['eng','uz'])){
+    public function setLocale($lang)
+    {
+        $availableLocales = ['en', 'uz']; // Qo'llab-quvvatlanadigan tillar
+
+        if (in_array($lang, $availableLocales)) {
             App::setLocale($lang);
-            Session::put('locale',$lang);
+            Session::put('locale', $lang);  // Sessiyada tilni saqlash
         }
-        return  back();
+
+        // Foydalanuvchini qayta yo'naltirish
+        return redirect()->back();  // Yoki foydalanuvchini kerakli sahifaga yo'naltirish
     }
+
 }

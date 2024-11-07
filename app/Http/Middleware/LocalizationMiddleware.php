@@ -16,10 +16,20 @@ class LocalizationMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+    // public function handle(Request $request, Closure $next): Response
+    // {
+    //     $locale=Session::get('locale')??'en';
+    //     Session::put('locale',$locale);
+    //     App::setLocale($locale);
+        
+    //     return $next($request);
+    // }
     public function handle(Request $request, Closure $next): Response
     {
-        $locale=Session::get('locale')??'en';
-        Session::put('locale',$locale);
+        // Sessiyadan yoki standart "en" tilini o'qish
+        $locale = Session::get('locale', 'en');
+
+        // Laravel ilovasining tilini o'rnatish
         App::setLocale($locale);
         
         return $next($request);

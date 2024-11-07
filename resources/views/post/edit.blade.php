@@ -52,7 +52,7 @@
                         </div>
                         <div class="my-3">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option value="eng" {{ old('publish', $post->lang) === 'eng' ? 'selected' : '' }}>eng</option>
+                                <option value="en" {{ old('publish', $post->lang) === 'en' ? 'selected' : '' }}>en</option>
                                 <option value="uz" {{ old('publish', $post->lang) === 'uz' ? 'selected' : '' }}>uz</option>        
                             </select>
                         </div> 

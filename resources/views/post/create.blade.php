@@ -58,11 +58,13 @@
                         </div>
      
                         <div class="my-3">
-                            <select class="form-control">
-                                <option value="eng">eng</option>
-                                <option value="uz" >uz</option>
+                            <label for="lang" class="text-lg font-medium">Language</label>
+                            <select class="form-control" name="lang">
+                                <option value="en" {{ old('lang') === 'en' ? 'selected' : '' }}>English</option>
+                                <option value="uz" {{ old('lang') === 'uz' ? 'selected' : '' }}>Uzbek</option>
                             </select>
-                        </div> 
+                        </div>
+                        
                         <!-- Content Field -->
                         <label for="content" class="text-lg font-medium">Content</label>
                         <div class="my-3">

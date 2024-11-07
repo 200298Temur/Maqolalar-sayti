@@ -26,7 +26,7 @@
                         </div> 
                         <div class="my-3">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option value="eng" {{ old('lang') }} >eng</option>
+                                <option value="en" {{ old('lang') }} >en</option>
                                 <option value="uz" {{ old('lang')}} >uz</option>
                             </select>
                         </div>            

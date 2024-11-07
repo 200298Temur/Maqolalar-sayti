@@ -5,9 +5,9 @@
                 @lang('message.posts')
             </h2>
             <a href="{{ route('posts.create') }}" 
-               class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
-               @lang('message.create')
-            </a>
+                class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
+                @lang('message.create')
+             </a>             
         </div>
     </x-slot>
     <div class="py-12">
@@ -36,7 +36,11 @@
                         @foreach ($posts as $post)
                         <tr class="border-b">
                             <td class="px-6 py-4 text-left">{{ $post->id }}</td>
-                            <td class="px-6 py-4 text-left"><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
+                            <td class="px-6 py-4 text-left">
+                                <a href="{{ route('posts.show', ['id' => $post->id]) }}">
+                                    {{ $post->title }}
+                                </a>
+                            </td>
                             <td class="px-6 py-4 text-left">{{ $post->categories->pluck('name')->implode(',') }}</td>
                             <td class="px-6 py-4 text-left">{{ $post->subtitle }}</td>
                             <td class="px-6 py-4 text-left">{{ $post->author->name }}</td>
@@ -47,16 +51,18 @@
                                 <p>{{ $post->publish === '0' ? 'Draft' : 'Publish' }}</p>
                             </td>
                             <td class="px-6 py-4 text-center"> 
-                                <a href="{{ route('posts.edit', $post->id) }}" 
-                                   class="bg-indigo-700	 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">@lang('message.edit')</a>                                 
-                                <a href="{{ route('posts.destroy', $post->id) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">@lang('message.delete')</a>   
+                                <a href="{{ route('posts.edit', ['id' => $post->id]) }}" 
+                                    class="bg-indigo-700 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">@lang('message.edit')</a>                                 
+                                 
+                                 <a href="{{ route('posts.destroy', ['id' => $post->id]) }}" 
+                                    class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500"
+                                    onclick="event.preventDefault(); document.getElementById('delete-post-form').submit();">@lang('message.delete')</a>                                     
                             </td>
                         </tr>
                         @endforeach
                     @else
                         <tr>
                             <td colspan="6" class="px-6 py-4 text-center text-gray-500">
-                               
                                 @lang('message.no posts found')
                             </td>
                         </tr>
