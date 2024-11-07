@@ -24,6 +24,27 @@
         'content'=>'Mazmuni',
         'draft'=>'Homaki',
         'publish'=>'Nashir qilish',
-        'update'=>'Tahrirlash'
+        'update'=>'Tahrirlash',
+        'profile'=>'Profil',
+        'logout'=>'Chiqish',
+        'profileInformation'=>'Profil Malumotlari',
+        "updateYourAccountsProfile"=>
+            "Profil ma'lumotlari va elektron pochta manzilini yangilash.",
+        'email'=>"Email",
+        'userName'=>'Ism',
+        'save'=>'Saqlash',
+        'password'=>'Parol',
+        'passwordAbout'=>
+            "Hisobingiz xavfsizligini ta'minlash uchun uzoq, tasodifiy paroldan foydalanayotganligiga ishonch hosil qiling.",
+        'passwordCurrent'=>'Joriy Parol',
+        'newPassword'=>'Yangi Parol',
+        'confirmPassword'=>'Parolni Tasdiqlang',
+        'account'=>'Akkount',
+        'deleteAccountAbout'=>"Hisobingiz o'chirilgandan so'ng, uning barcha resurslari va ma'lumotlari butunlay o'chiriladi. Hisobingizni o'chirishdan oldin, o'zingiz saqlamoqchi bo'lgan har qanday ma'lumot yoki ma'lumotni yuklab oling.",
+        'forgotPassword'=>'Parolni unutdingizmi?',
+        'login'=>'Kirish',
+        'rememberMe' => 'Meni eslab qol',
+
+    
     ];
 ?>

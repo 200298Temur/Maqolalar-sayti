@@ -24,6 +24,24 @@
         'content'=>'Content',
         'draft'=>'Draft',
         'publish'=>'Publish',
-        'update'=>'Update'
+        'update'=>'Update',
+        'profile'=>'Profile',
+        'logout'=>'Log Out',
+        'profileInformation' => 'Profile Information',
+        'updateYourAccountsProfile' => 'Update your profile information and email address.',
+        'email'=>"Email",
+        'userName' => 'Name',
+        'save' => 'Save',
+        'password' => 'Password',
+        'passwordAbout' => 'Ensure your account is using a long, random password to stay secure.',
+        'passwordCurrent' => 'Current Password',
+        'newPassword' => 'New Password',
+        'confirmPassword' => 'Confirm Password',
+        'account' => 'Account',
+        'deleteAccountAbout' => "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information you wish to retain.",
+        'forgotPassword'=>'Forgot your password?',
+        'login'=>'Log in',
+        'rememberMe' => 'Remember me',
+        
     ];
 ?>

@@ -76,8 +76,8 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                        <x-dropdown-link href="{{{route('profile.edit')}}}">
+                            @lang('message.profile')
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -86,7 +86,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                @lang('message.logout')
                             </x-dropdown-link>
                         </form>
                     </x-slot>
