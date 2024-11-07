@@ -2,11 +2,11 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Maqolalar') }}
+                @lang('message.categories')
             </h2>
             <a href="{{ route('categories.create') }}" 
                class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
-                Create
+               @lang('message.create')
             </a>
         </div>
     </x-slot>
@@ -18,9 +18,9 @@
                 <thead class="bg-gray-50">
                     <tr class="border-b">
                         <th class="px-6 py-3 text-left" width="60">#</th>
-                        <th class="px-6 py-3 text-left">Name</th>
-                        <th class="px-6 py-3 text-left" width="180">Created</th>
-                        <th class="px-6 py-3 text-center" width="180">Action</th>
+                        <th class="px-6 py-3 text-left">@lang('message.name')</th>
+                        <th class="px-6 py-3 text-left" width="180">@lang('message.created')</th>
+                        <th class="px-6 py-3 text-center" width="250">@lang('message.action')</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white">
@@ -34,8 +34,8 @@
                             </td>
                             <td class="px-6 py-4 text-center"> 
                                 <a href="{{ route('categories.edit',['locale' => app()->getLocale(), $post->id]) }}" 
-                                   class="bg-indigo-700	 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">Edit</a>                                 
-                                <a href="{{ route('categories.destroy', ['locale' => app()->getLocale(),$post->id]) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">Delete</a>   
+                                   class="bg-indigo-700	 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">@lang('message.edit')</a>                                 
+                                <a href="{{ route('categories.destroy', ['locale' => app()->getLocale(),$post->id]) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">@lang('message.delete')</a>   
                             </td>
                         </tr>
                         @endforeach

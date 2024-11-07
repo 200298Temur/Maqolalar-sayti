@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Category / Edit
+                @lang('message.category') / @lang('message.edit')
             </h2>
             <a href="{{ route('categories.index') }}" 
-               class="bg-gray-600 hover:bg-gray-500 text-sm rounded-md text-white px-3 py-2">Back</a>
+               class="bg-gray-600 hover:bg-gray-500 text-sm rounded-md text-white px-3 py-2">@lang('message.back')</a>
         </div>
     </x-slot>
 
@@ -16,7 +16,7 @@
                     <form action="{{ route('categories.update',$category->id) }}" method="post">
                         @csrf
                         <!-- Title Field -->
-                        <label for="title" class="text-lg font-medium">Name</label>
+                        <label for="title" class="text-lg font-medium">@lang('message.name')</label>
                         <div class="my-3">
                             <input value="{{ old('name',$category->name) }}" name="name" placeholder="Name" type="text"
                                    class="border-gray-300 shadow-sm w-full rounded-lg">
@@ -26,13 +26,13 @@
                         </div>     
                         <div class="my-3">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option value="en" {{ old('publish', $post->lang) === 'en' ? 'selected' : '' }}>en</option>
-                                <option value="uz" {{ old('publish', $post->lang) === 'uz' ? 'selected' : '' }}>uz</option>        
+                                <option value="en" {{ old('publish', $category->lang) === 'en' ? 'selected' : '' }}>English</option>
+                                <option value="uz" {{ old('publish', $category->lang) === 'uz' ? 'selected' : '' }}>Uzbek</option>        
                             </select>
                         </div>                                       
                         <!-- Submit Button -->
                         <button class="bg-gray-500 hover:bg-gray-400 text-xs rounded-md text-white px-3 py-2">
-                            Update
+                            @lang('message.update')
                         </button>                                               
                     </form>
                 </div>

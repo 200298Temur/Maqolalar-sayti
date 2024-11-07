@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Category / Create
+                @lang('message.category') / @lang('message.create')
             </h2>
             <a href="{{ route('posts.index') }}" 
-               class="bg-gray-600 hover:bg-gray-500 text-sm rounded-md text-white px-3 py-2">Back</a>
+               class="bg-gray-600 hover:bg-gray-500 text-sm rounded-md text-white px-3 py-2">@lang('message.back')</a>
         </div>
     </x-slot>
 
@@ -16,7 +16,7 @@
                     <form action="{{ route('categories.store') }}" method="post">
                         @csrf
                         <!-- Title Field -->
-                        <label for="title" class="text-lg font-medium">Name</label>
+                        <label for="title" class="text-lg font-medium">@lang('message.name')</label>
                         <div class="my-3">
                             <input value="{{ old('name') }}" name="name" placeholder="Name" type="text"
                                    class="border-gray-300 shadow-sm w-full rounded-lg">
@@ -26,8 +26,8 @@
                         </div> 
                         <div class="my-3">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option value="en" {{ old('lang') }} >en</option>
-                                <option value="uz" {{ old('lang')}} >uz</option>
+                                <option value="en" {{ old('lang') }} >English</option>
+                                <option value="uz" {{ old('lang')}} >Uzbek</option>
                             </select>
                         </div>            
                         <!-- Submit Button -->

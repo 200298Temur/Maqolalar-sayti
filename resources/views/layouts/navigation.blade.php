@@ -29,10 +29,35 @@
             </div>
 
             <!-- Language Selection -->
-            <div class="flex items-center space-x-2" style="margin-top: 10px;">
-                <a href="{{ route('locale.set', ['lang' => 'en']) }}">English</a> / 
-                <a href="{{ route('locale.set', ['lang' => 'uz']) }}">Uzbek</a>                    
+
+            <div class="relative inline-block text-left" style="margin-top: 10px;">
+                <button class="flex items-center space-x-2 focus:outline-none">
+                    <span>{{ strtoupper(app()->getLocale()) }}</span> <!-- Tanlangan tilni ko‘rsatish -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div class="absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 hidden">
+                    <a href="{{ route('locale.set', ['lang' => 'en']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <span class="inline-flex items-center">
+                            🇺🇸 English
+                        </span>
+                    </a>
+                    <a href="{{ route('locale.set', ['lang' => 'uz']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <span class="inline-flex items-center">
+                            🇺🇿 Uzbek
+                        </span>
+                    </a>
+                </div>
             </div>
+            
+            <script>
+                // Dropdownni boshqarish uchun JavaScript
+                document.querySelector('.relative').addEventListener('click', function () {
+                    const dropdown = this.querySelector('.absolute');
+                    dropdown.classList.toggle('hidden');
+                });
+            </script>
             
 
             <!-- Settings Dropdown -->

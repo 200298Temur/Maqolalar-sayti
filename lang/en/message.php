@@ -3,8 +3,9 @@
         'dashboard'=>'Dashboard',
         "you're logged in!"=>"You're logged in!",
         'posts'=>'Posts',
-        'categories'=>'Categories',       
+        'post'=>'Post',
         'title'=>'Title',
+        'categories'=>'Categories',       
         'category'=>'Category',
         'subtitle'=>'Subtitle',
         'author'=>'Author',
@@ -17,6 +18,12 @@
         'edit'=>'Edit',
         'delete'=>"Delete"   ,
         'no posts found'=>'No posts found',
-        'search'=>'Search'
+        'search'=>'Search',
+        'uploadImage'=>'Upload Image',
+        'language'=>'Language',
+        'content'=>'Content',
+        'draft'=>'Draft',
+        'publish'=>'Publish',
+        'update'=>'Update'
     ];
 ?>

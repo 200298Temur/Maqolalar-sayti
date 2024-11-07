@@ -2,10 +2,12 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Post / Edit
+                @lang('message.post') / @lang('message.edit')
             </h2>
             <a href="{{ route('posts.index') }}" 
-               class="bg-gray-600 hover:bg-gray-500 text-sm rounded-md text-white px-3 py-2">Back</a>
+               class="bg-gray-600 hover:bg-gray-500 text-sm rounded-md text-white px-3 py-2">
+               @lang('message.back')
+            </a>
         </div>
     </x-slot>
 
@@ -16,7 +18,7 @@
                     <form action="{{ route('posts.update',$post->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <!-- Title Field -->
-                        <label for="title" class="text-lg font-medium">Title</label>
+                        <label for="title" class="text-lg font-medium">@lang('message.title')</label>
                         <div class="my-3">
                             <input value="{{ old('title',$post->title) }}" name="title" placeholder="Title" type="text"
                                    class="border-gray-300 shadow-sm w-full rounded-lg">
@@ -37,7 +39,7 @@
                             @endif
                         </div>
                         <!-- Subtitle Field -->
-                        <label for="subtitle" class="text-lg font-medium">Subtitle</label>
+                        <label for="subtitle" class="text-lg font-medium">@lang('message.subtitle')</label>
                         <div class="my-3">
                             <input value="{{ old('subtitle',$post->subtitle) }}" name="subtitle" placeholder="Subtitle" type="text"
                                    class="border-gray-300 shadow-sm w-full rounded-lg">
@@ -46,32 +48,34 @@
                             @enderror
                         </div>
                         
+                        <label for="image" class="text-lg font-medium">@lang('message.uploadImage')</label>
                         <div class="my-3">
-                            <label for="image" class="text-lg font-medium">Upload Image</label>
                             <input type="file" name="image" class="form-control" /> 
                         </div>
-                        <div class="my-3">
+
+                        <label for="exampleFormControlSelect1" class="text-lg font-medium">@lang('message.language')</label>
+                        <div class="my-3" >
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option value="en" {{ old('publish', $post->lang) === 'en' ? 'selected' : '' }}>en</option>
-                                <option value="uz" {{ old('publish', $post->lang) === 'uz' ? 'selected' : '' }}>uz</option>        
+                                <option value="en" {{ old('publish', $post->lang) === 'en' ? 'selected' : '' }}>English</option>
+                                <option value="uz" {{ old('publish', $post->lang) === 'uz' ? 'selected' : '' }}>Uzbek</option>        
                             </select>
                         </div> 
                         <!-- Content Field -->
-                        <label for="text" class="text-lg font-medium">Content</label>
+                        <label for="text" class="text-lg font-medium">@lang('message.content')</label>
                         <div class="my-3">
                             <textarea name="content" placeholder="Content" id="editor" cols="30" rows="10" 
                                       class="border-gray-300 shadow-sm w-1/2 rounded-lg">{{ old('content',$post->content) }}</textarea>
                         </div>
                         <div>
                             <select name="publish" class="form-control" id="exampleFormControlSelect1">
-                                <option value="draft" {{ old('publish', $post->publish) === '0' ? 'selected' : '' }}>Draft</option>
-                                <option value="publish" {{ old('publish', $post->publish) === '1' ? 'selected' : '' }}>Publish</option>
+                                <option value="draft" {{ old('publish', $post->publish) === '0' ? 'selected' : '' }}>@lang('message.draft')</option>
+                                <option value="publish" {{ old('publish', $post->publish) === '1' ? 'selected' : '' }}>@lang('message.publish')</option>
                             </select>
                             
                             <input type="date" value="{{ old('Attime', $post->Attime) }}" name="Attime" class="ml-10 rounded-lg border-gray-300">
                         </div>                            
                         <!-- Author Display -->
-                        <p class="text-lg font-medium">Author : {{ Auth::user()->name }}</p>
+                        <p class="text-lg font-medium">@lang('message.author') : {{ Auth::user()->name }}</p>
                         
                         <!-- Submit Button -->
                         <button class="bg-gray-500 hover:bg-gray-400 text-xs rounded-md text-white px-3 py-2">
