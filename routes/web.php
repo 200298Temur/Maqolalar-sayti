@@ -38,8 +38,8 @@ Route::prefix('admin')->middleware(['auth', LocalizationMiddleware::class])->gro
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 });
-
 Route::get('posts/search', [PostController::class, 'search'])->name('posts.search');
+
 Route::post('posts/upload', [PostController::class, 'upload'])->name('posts.uploadMedia');
 
 // Route::group(['prefix' => '{locale}', 'where' => ['locale' => 'en|uz'], 'middleware' => 'auth'], function () {
