@@ -7,7 +7,7 @@ use Laravel\Scout\Searchable;
 class Post extends Model
 {
    use Searchable;  
-    protected $guarded = ['id','image','title','publish','subtitle','content','author_id','Attime',]; 
+    protected $guarded = ['id','image','title','publish','subtitle','content','author_id','Attime','lang']; 
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id'); // author_id to'g'ri ko'rsatilganmi?

@@ -52,11 +52,9 @@
                             </td>
                             <td class="px-6 py-4 text-center"> 
                                 <a href="{{ route('posts.edit', ['id' => $post->id]) }}" 
-                                    class="bg-indigo-700 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">@lang('message.edit')</a>                                 
-                                 
-                                 <a href="{{ route('posts.destroy', ['id' => $post->id]) }}" 
-                                    class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500"
-                                    onclick="event.preventDefault(); document.getElementById('delete-post-form').submit();">@lang('message.delete')</a>                                     
+                                    class="bg-indigo-700 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">@lang('message.edit')</a>                                
+                                 <a href="{{ route('posts.destroy', [$post->id]) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">@lang('message.delete')</a>   
+                                    
                             </td>
                         </tr>
                         @endforeach

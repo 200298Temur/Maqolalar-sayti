@@ -25,7 +25,7 @@
                             @enderror
                         </div> 
                         <div class="my-3">
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <select class="form-control" name="lang" id="exampleFormControlSelect1">
                                 <option value="en" {{ old('lang') }} >English</option>
                                 <option value="uz" {{ old('lang')}} >Uzbek</option>
                             </select>
