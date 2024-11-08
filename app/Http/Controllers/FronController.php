@@ -15,7 +15,7 @@ class FronController extends Controller
     {
         $posts = Post::where('publish', '1')->orderBy('created_at', 'desc')->get();
         $categories = Category::orderBy('name', 'desc')->get();
-        // dd($categories);
+        // dd($posts);
         return view('front.post.index', [
             'posts' => $posts,
             'categories' => $categories 
@@ -23,12 +23,12 @@ class FronController extends Controller
     }
     public function PostSee($id)
     {
+        // dd($id);
         $post = Post::where('publish', '1')
                     ->where('id', '=', $id)
                     ->first(); // `get()` o'rniga `first()` ishlatilmoqda
 
         $categories = Category::orderBy('name', 'desc')->get();
-
         return view('front.post.see', [
             'post' => $post,
             'categories' => $categories

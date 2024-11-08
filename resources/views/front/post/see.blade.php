@@ -9,7 +9,7 @@
                 <div class="sn-container">
                     <div class="sn-img" style="display: flex; align-items: center; justify-content: center;">
                         {{-- <img src="{{asset($post->image)}}" /> --}}
-                        @if(is_null($post->image))
+                        @if(empty($post->image))
                                 <img style="height: 300px; margin:0 auto; width: 200px;" alt="web" src="{{asset('img/download.png')}}" />                                
                         @else
                             <img style="height: 300px;margin:0 auto; width: 300px;" src="{{asset($post->image)}}" alt="boshqa" />
