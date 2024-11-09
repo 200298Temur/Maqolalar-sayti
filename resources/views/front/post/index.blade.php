@@ -15,7 +15,7 @@
                                 <img style="height: 250px" src="{{ asset($post->image) }}" alt="boshqa" />
                             @endif
                             <div class="cn-title">
-                                <a href="{{ route('front.see', $post->id) }}">{{ $post->title }}</a>
+                                <a href="{{env('APP_URL') . "/" . app()->getLocale() . "/posts/see/" . $post->id}}">{{ $post->title }}</a>
                             </div>
                         </div>
                         <div>

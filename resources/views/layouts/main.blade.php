@@ -112,7 +112,7 @@
                             <a href="{{route('front.index')}}" class="nav-item nav-link">@lang('message.home')</a>
                             {{-- <a href="#" class="nav-item nav-link">Home</a> --}}                        
                             @foreach ($categories as $category)
-                            <a href="{{route('front.show',$category->id)}}" class="nav-item nav-link">{{$category->name}}</a>
+                            <a href="{{env('APP_URL') . "/" . app()->getLocale() . "/posts/show/" .$category->id}}" class="nav-item nav-link">{{$category->name}}</a>
                             @endforeach
                         </div>   
                         <div class="social ml-auto">

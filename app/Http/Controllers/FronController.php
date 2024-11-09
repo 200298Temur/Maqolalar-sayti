@@ -35,7 +35,8 @@ class FronController extends Controller
                     // ->where('lang',app()->getLocale())
                     ->first(); // `get()` o'rniga `first()` ishlatilmoqda
 
-        $categories = Category::orderBy('name', 'desc')->get();
+        $categories = Category::where('lang',app()->getLocale())
+        ->orderBy('name', 'desc')->get();
         return view('front.post.see', [
             'post' => $post,
             'categories' => $categories

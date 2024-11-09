@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('locale/{lang}', [LocaleController::class, 'setLocale'])->name('locale.set');
 Route::get('prefix/{lang}', [LocaleController::class, 'setPrefix'])->name('prefix.set');
 
-Route::get('/', function () {
-    $locale = config('app.locale');
-    return redirect($locale);
-});
+// Route::get('/', function () {
+//     $locale = config('app.locale');
+//     return redirect($locale);
+// });
 
 Route::group(['prefix' => '/en', 'middleware' =>SetLocale::class], function () {
     group_routes();

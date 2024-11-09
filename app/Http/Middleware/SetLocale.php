@@ -25,6 +25,8 @@ class SetLocale
         // }
  
         // return $next($request);
+
+        
         $locale = Session::get('locale', 'en');
         // Laravel ilovasining tilini o'rnatish
         App::setLocale($locale);
