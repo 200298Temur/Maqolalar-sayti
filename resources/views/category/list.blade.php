@@ -19,6 +19,7 @@
                     <tr class="border-b">
                         <th class="px-6 py-3 text-left" width="60">#</th>
                         <th class="px-6 py-3 text-left">@lang('message.name')</th>
+                        <th class="px-6 py-3 text-left">@lang('message.language')</th>
                         <th class="px-6 py-3 text-left" width="180">@lang('message.created')</th>
                         <th class="px-6 py-3 text-center" width="250">@lang('message.action')</th>
                     </tr>
@@ -29,6 +30,7 @@
                         <tr class="border-b">
                             <td class="px-6 py-4 text-left">{{ $post->id }}</td>
                             <td class="px-6 py-4 text-left">{{ $post->name }}</td>
+                            <td class="px-6 py-4 text-left">{{ $post->lang }}</td>
                             <td class="px-6 py-4 text-left">
                                 {{ \Carbon\Carbon::parse($post->created_at)->format('d M, Y') }}
                             </td>

@@ -58,22 +58,40 @@
                             </a>
                         </div>
                     </div>
-                     <div class="col-lg-6 col-md-4">
+                     {{-- <div class="col-lg-4 col-md-4">
                         <div class="b-ads">
                             <a href="https://htmlcodex.com">
                                 <img src="{{asset('img/ads-1.jpg')}}" alt="Ads">
                             </a>
                         </div>
+                    </div> --}}
+                    <div class="relative inline-block text-left" style="margin-top: 10px;">
+                        <div class="absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 hidden">
+                            <a href="{{ route('prefix.set', ['lang' => 'en']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <span class="inline-flex items-center">
+                                    🇺🇸 English
+                                </span>
+                            </a>
+                            <a href="{{ route('prefix.set', ['lang' => 'uz']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <span class="inline-flex items-center">
+                                    🇺🇿 Uzbek
+                                </span>
+                            </a>
+                        </div>
                     </div>
+
+
                     <div class="col-lg-3 col-md-4" style="position: relative">
                         <div class="b-search">
-                            <input type="text" placeholder="Search">
+                            <input type="text" placeholder="@lang('message.search')">
                             <button id="search__btn"><i class="fa fa-search"></i></button>
                         </div>
                         <div id="box" style=" display: none;">
     
-                        </div>
+                        </div>                        
                     </div>
+                    
+                    
                     
                 </div>
             </div>
@@ -91,7 +109,7 @@
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
-                            <a href="{{route('front.index')}}" class="nav-item nav-link">Home</a>
+                            <a href="{{route('front.index')}}" class="nav-item nav-link">@lang('message.home')</a>
                             {{-- <a href="#" class="nav-item nav-link">Home</a> --}}                        
                             @foreach ($categories as $category)
                             <a href="{{route('front.show',$category->id)}}" class="nav-item nav-link">{{$category->name}}</a>
@@ -117,7 +135,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
-                            <h3 class="title">Get in Touch</h3>
+                            <h3 class="title">@lang('message.getInTouch')</h3>
                             <div class="contact-info">
                                 <p><i class="fa fa-map-marker"></i>123 News Street, NY, USA</p>
                                 <p><i class="fa fa-envelope"></i>info@example.com</p>
@@ -135,7 +153,7 @@
                     
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
-                            <h3 class="title">Useful Links</h3>
+                            <h3 class="title">@lang('message.usefulLinks')</h3>
                             <ul>
                                 <li><a href="#">Lorem ipsum</a></li>
                                 <li><a href="#">Pellentesque</a></li>
@@ -148,7 +166,7 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
-                            <h3 class="title">Quick Links</h3>
+                            <h3 class="title">@lang('message.quickLinks')</h3>
                             <ul>
                                 <li><a href="#">Lorem ipsum</a></li>
                                 <li><a href="#">Pellentesque</a></li>
@@ -161,14 +179,14 @@
                     
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
-                            <h3 class="title">Newsletter</h3>
+                            <h3 class="title">@lang('message.newsletter')</h3>
                             <div class="newsletter">
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed porta dui. Class aptent taciti sociosqu
                                 </p>
                                 <form>
-                                    <input class="form-control" type="email" placeholder="Your email here">
-                                    <button class="btn">Submit</button>
+                                    <input class="form-control" type="email" placeholder="@lang('message.yourEmail')">
+                                    <button class="btn border">@lang('message.submit')</button>
                                 </form>
                             </div>
                         </div>
@@ -177,38 +195,7 @@
             </div>
         </div>
         <!-- Footer End -->
-        
-        <!-- Footer Menu Start -->
-        <div class="footer-menu">
-            <div class="container">
-                <div class="f-menu">
-                    <a href="">Terms of use</a>
-                    <a href="">Privacy policy</a>
-                    <a href="">Cookies</a>
-                    <a href="">Accessibility help</a>
-                    <a href="">Advertise with us</a>
-                    <a href="">Contact us</a>
-                </div>
-            </div>
-        </div>
-        <!-- Footer Menu End -->
-
-        <!-- Footer Bottom Start -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 copyright">
-                        <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
-                    </div>
-
-                    <div class="col-md-6 template-by">
-                        <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer Bottom End -->
-
+       
         <!-- Back to Top -->
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 

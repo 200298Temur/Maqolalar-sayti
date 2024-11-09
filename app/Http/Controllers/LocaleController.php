@@ -21,4 +21,20 @@ class LocaleController extends Controller
         return redirect()->back();  // Yoki foydalanuvchini kerakli sahifaga yo'naltirish
     }
 
+    public function setPrefix($lang)
+    {
+
+        App::setLocale($lang);
+        Session::put('locale', $lang);
+
+        if ($lang === 'en') {
+            $newUrl = url('/en'); // "http://127.0.0.1:8000/en"
+        } elseif ($lang === 'uz') {
+            $newUrl = url('/uz'); // "http://127.0.0.1:8000/uz"
+        } 
+        return redirect($newUrl);
+    }
+
+
+
 }

@@ -42,6 +42,13 @@
         'forgotPassword'=>'Forgot your password?',
         'login'=>'Log in',
         'rememberMe' => 'Remember me',
+        'newsletter'=>'News Latter',
+        'quickLinks'=>'Quick Links',
+        'usefulLinks'=>'Useful Links',
+        'getInTouch'=>'Get In Touch',
+        'submit'=>'Submit',
+        'yourEmail'=>'Your email here',
+        'home'=>'Home',
         
     ];
 ?>

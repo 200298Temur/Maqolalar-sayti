@@ -11,11 +11,17 @@ class FronController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::where('publish', '1')->orderBy('created_at', 'desc')->get();
-        $categories = Category::orderBy('name', 'desc')->get();
-        // dd($posts);
+        // dd($request);
+        $posts = Post::where('publish', '1')
+                ->where('lang',app()->getLocale())
+                ->orderBy('created_at', 'desc')->get();
+
+        $categories = Category::where('lang',app()->getLocale())
+                ->orderBy('name', 'desc')->get();
+        
+        // dd(app()->getLocale());
         return view('front.post.index', [
             'posts' => $posts,
             'categories' => $categories 
@@ -26,6 +32,7 @@ class FronController extends Controller
         // dd($id);
         $post = Post::where('publish', '1')
                     ->where('id', '=', $id)
+                    // ->where('lang',app()->getLocale())
                     ->first(); // `get()` o'rniga `first()` ishlatilmoqda
 
         $categories = Category::orderBy('name', 'desc')->get();
@@ -36,18 +43,23 @@ class FronController extends Controller
     }
 
     public function show(string $id)
-    {   
+    {
+        $lang=app()->getLocale();
         $posts = Post::where('publish', '1')
-                 ->where('id', '=', $id)
-                 ->orderBy('created_at', 'desc')
-                 ->get();
-        $categories = Category::orderBy('name', 'desc')->get();
-        // dd($categories);
+                    ->whereHas('categories', function ($query) use ($id) {
+                        $query->where('categories.id', $id);
+                    })
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+        $categories = Category::where('lang', $lang)
+                    ->orderBy('name', 'desc')->get();
         return view('front.post.index', [
             'posts' => $posts,
-            'categories' => $categories // Bu bilan main.blade.php ga ham uzatiladi
+            'categories' => $categories
         ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.

@@ -4,9 +4,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App;
-use Config;
-use Session;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
@@ -19,12 +18,18 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next)
     {
-        $locale = $request->segment(1);
-        if (array_search($locale, ['uz', 'en']) !== false) {
-            app()->setLocale($request->segment(1));
-            // dd(app()->getLocale());
-        }
+        // $locale = $request->segment(1);
+        // if (array_search($locale, ['uz', 'en']) !== false) {
+        //     app()->setLocale($request->segment(1));
+        //     // dd(app()->getLocale());
+        // }
  
+        // return $next($request);
+        $locale = Session::get('locale', 'en');
+        // Laravel ilovasining tilini o'rnatish
+        App::setLocale($locale);
+        // dd(App::getLocale());
+        
         return $next($request);
     }
 

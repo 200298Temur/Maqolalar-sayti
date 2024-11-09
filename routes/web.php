@@ -9,19 +9,7 @@ use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
 Route::get('locale/{lang}', [LocaleController::class, 'setLocale'])->name('locale.set');
-
-// Route::get('/', function () {
-//     return redirect(app()->getLocale());
-// });
-
-
-// Route::prefix('{locale}')
-//     ->middleware([LocalizationMiddleware::class])
-//     ->group(function () {
-//         Route::get('/', [FronController::class, 'index'])->name('front.index');
-//         Route::get('posts/show/{id}', [FronController::class, 'show'])->name('front.show');
-//         Route::get('posts/see/{id}', [FronController::class, 'PostSee'])->name('front.see');
-// });
+Route::get('prefix/{lang}', [LocaleController::class, 'setPrefix'])->name('prefix.set');
 
 Route::get('/', function () {
     $locale = config('app.locale');

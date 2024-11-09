@@ -28,7 +28,7 @@ class LocalizationMiddleware
     {
         // Sessiyadan yoki standart "en" tilini o'qish
         $locale = Session::get('locale', 'en');
-
+        
         // Laravel ilovasining tilini o'rnatish
         App::setLocale($locale);
         

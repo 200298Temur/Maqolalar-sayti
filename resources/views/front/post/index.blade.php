@@ -20,7 +20,7 @@
                         </div>
                         <div>
                             <p class="text">{{ $post->subtitle }}</p>
-                            @lang('message.title')
+                            {{-- @lang('message.title') --}}
                         </div>
                     </div>   
                     @endforeach

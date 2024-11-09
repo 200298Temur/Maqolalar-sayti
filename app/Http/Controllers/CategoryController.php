@@ -10,7 +10,8 @@ use function PHPUnit\Framework\returnSelf;
 
 class CategoryController extends Controller
 {
-    public function index(){
+    public function index(){  
+              
         $categories=Category::latest()->paginate(20);
         return view('category.list',[
             'categories'=>$categories

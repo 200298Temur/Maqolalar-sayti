@@ -44,7 +44,13 @@
         'forgotPassword'=>'Parolni unutdingizmi?',
         'login'=>'Kirish',
         'rememberMe' => 'Meni eslab qol',
-
+        'newsletter'=>'Taklif Yuborish',
+        'quickLinks'=>'Tezkor bog`lanish',
+        'usefulLinks'=>'Foydali Linklar',
+        'getInTouch'=>'Manzil',
+        'submit'=>'Jo`natish',
+        'yourEmail'=>'Email kiriting',
+        'home'=>'Asosiy Sahifa'
     
     ];
 ?>
