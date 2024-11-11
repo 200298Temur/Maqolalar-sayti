@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class PostController extends Controller
 {
     public function index() {
-        $posts = Post::where('lang',app()->getLocale())->0with('author')->latest()->paginate(10); // 'author.name' o'rniga faqat 'author' ni qo'llang
+        $posts = Post::where('lang',app()->getLocale())->with('author')->latest()->paginate(10); // 'author.name' o'rniga faqat 'author' ni qo'llang
         return view('post.list', [
             'posts' => $posts
         ]);

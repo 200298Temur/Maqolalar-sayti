@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 class Post extends Model
 {
-   use Searchable;  
+   use Searchable, HasFactory;  
     protected $guarded = ['id','image','title','publish','subtitle','content','author_id','Attime','lang']; 
     public function author()
     {
