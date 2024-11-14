@@ -24,53 +24,54 @@ class RoleController extends Controller
         ]);
     }
 
-    public function store(Request $request){
-        $validator=Validator::make($request->all(),[
-            'name'=>'required|min:3'
+    public function store(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3'
         ]);
+    
         if ($validator->passes()) {
-            $role=Role::create(['name' => $request->name]);
-            if(!empty($request->permission)){
-                if ($request->has('permissions')) {
-                    $role->permissions()->attach($request->permissions);
-                }
+            $role = Role::create(['name' => $request->name]);
+    
+            // Attach permissions using IDs
+            if (!empty($request->permission)) {
+                $role->permissions()->attach($request->permission);
             }
-
-
-            return redirect()->route('roles.index')->with('success', 'Roles added successfully.');
+    
+            return redirect()->route('roles.index')->with('success', 'Role added successfully.');
         } else {
             return redirect()->route('roles.create')->withInput()->withErrors($validator);
         }
-        
     }
+    
+    
 
-    public function edit(string $id){
-        $role=Role::find($id);
-        $permissions=Permission::orderBy('id','asc')->get();
-        $hasPermissions=$role->permissions->pluck('name');
-        return view('role.edit',[
-            'role'=>$role,
-            'permissions'=>$permissions,
-            'hasPermissions'=>$hasPermissions
-        ]);
+    public function edit($id) {
+        $role = Role::find($id);
+        $permissions = Permission::all();
+        $hasPermissions = $role->permissions->pluck('id'); // Only IDs
+    
+        return view('role.edit', compact('role', 'permissions', 'hasPermissions'));
     }
-
-    public function update(Request $request,string $id){
-        $validator=Validator::make($request->all(),[
-            'name'=>'required|min:3'
+    
+   
+    public function update(Request $request, string $id) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3'
         ]);
-        $role=Role::find($id);
-        if($validator->passes()){
-            $role->name=$request->name;
+    
+        $role = Role::find($id);
+    
+        if ($validator->passes()) {
+            $role->name = $request->name;
             $role->save();
-            if(!empty($request->permissions)){
-                $role->permissions()->sync($request->permissions);
-            }else{
-                $role->permissions()->sync();
-            }
+    
+            // Sync the permissions using IDs
+            $role->permissions()->sync($request->permission ?? []);
         }
+        return redirect()->route('roles.index');
     }
-
+    
+    
     public function  destroy(string $id)  {
         $post=Role::find($id);
         if($post==null){

@@ -67,10 +67,20 @@ Route::prefix('admin')->middleware(['auth', LocalizationMiddleware::class])->gro
     Route::post('/roles/{id}',[RoleController::class,'update'])->name('roles.update');
     Route::get('/roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
 
+    // Route::get('/permissions',[PermissionController::class,'index'])->name('permissions.index');
+    // Route::get('/permissions/create',[PermissionController::class,'create'])->name('permissions.create');
+    // Route::post('/permissions',[PermissionController::class,'store'])->name('permissions.store');
+    // Route::get('/permissions/{id}/edit',[PermissionController::class,'edit'])->name('permissions.edit');
+    // Route::post('/permissions/{id}',[PermissionController::class,'update'])->name('permissions.update');
+    // Route::get('/permissions/{role}', [PermissionController::class, 'destroy'])->name('permissions.destroy');
 
-    Route::get('permissions', [PermissionController::class, 'index'])->name('permissions.index');
-    
-    Route::get('users', [UserController::class, 'index'])->name('users.index');
+
+    Route::get('/users',[UserController::class,'index'])->name('users.index');
+    Route::get('/users/create',[UserController::class,'create'])->name('users.create');
+    Route::post('/users',[UserController::class,'store'])->name('users.store');
+    Route::get('/users/{id}/edit',[UserController::class,'edit'])->name('users.edit');
+    Route::post('/users/{id}',[UserController::class,'update'])->name('users.update');
+    Route::get('/users/{role}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
