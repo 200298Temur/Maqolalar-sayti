@@ -2,8 +2,11 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FronController;
 use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\LocalizationMiddleware;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +59,19 @@ Route::prefix('admin')->middleware(['auth', LocalizationMiddleware::class])->gro
     Route::get('categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
     Route::post('categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
     Route::get('categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    
+    Route::get('/roles',[RoleController::class,'index'])->name('roles.index');
+    Route::get('/roles/create',[RoleController::class,'create'])->name('roles.create');
+    Route::post('/roles',[RoleController::class,'store'])->name('roles.store');
+    Route::get('/roles/{id}/edit',[RoleController::class,'edit'])->name('roles.edit');
+    Route::post('/roles/{id}',[RoleController::class,'update'])->name('roles.update');
+    Route::get('/roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
+
+
+    Route::get('permissions', [PermissionController::class, 'index'])->name('permissions.index');
+    
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
