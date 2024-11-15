@@ -55,9 +55,9 @@ class UserController extends Controller
             if (!empty($request->role)) {
                 $user->roles()->attach($request->role);
             }
-            return redirect()->route('users.index')->with('success', 'User added successfully.');
+            return redirect()->route('user.index')->with('success', 'User added successfully.');
         } else {
-            return redirect()->route('users.create')->withInput()->withErrors($validator);
+            return redirect()->route('user.create')->withInput()->withErrors($validator);
         }
     }
 
@@ -100,7 +100,7 @@ class UserController extends Controller
             $user->save();
             $user->roles()->sync($request->role ?? []);
         }
-        return redirect()->route('users.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -110,9 +110,9 @@ class UserController extends Controller
     {
         $user=User::find($id);
         if($user==null){
-            return redirect()->route('users.index')->with('error','User not foung');
+            return redirect()->route('user.index')->with('error','User not foung');
         }
         $user->delete();
-        return redirect()->route('users.index')->with('success','User deleted successfully');
+        return redirect()->route('user.index')->with('success','User deleted successfully');
     }
 }

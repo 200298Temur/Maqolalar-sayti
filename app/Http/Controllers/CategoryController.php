@@ -36,9 +36,9 @@ class CategoryController extends Controller
             
             $post->save();
 
-            return redirect()->route('categories.index')->with('success', 'Category created successfully');
+            return redirect()->route('category.index')->with('success', 'Category created successfully');
         } else {
-            return redirect()->route('categories.create')->withInput()->withErrors($validator);
+            return redirect()->route('category.create')->withInput()->withErrors($validator);
         }
     }
 
@@ -63,9 +63,9 @@ class CategoryController extends Controller
             
             $post->save();
 
-            return redirect()->route('categories.index')->with('success', 'Category updated successfully');
+            return redirect()->route('category.index')->with('success', 'Category updated successfully');
         } else {
-            return redirect()->route('categories.edit')->withInput()->withErrors($validator);
+            return redirect()->route('category.edit')->withInput()->withErrors($validator);
         }
     }
     public function destroy(string $id){
@@ -74,12 +74,12 @@ class CategoryController extends Controller
         if($category==null){
             session()->flash('error','Category not found');
             
-            return  redirect()->route('categories.index')->with('error', 'Category not found');;
+            return  redirect()->route('category.index')->with('error', 'Category not found');;
         }
 
         $category->delete();
         
-        return  redirect()->route('categories.index')->with('success', 'Category deleted successfully');;
+        return  redirect()->route('category.index')->with('success', 'Category deleted successfully');;
 
     }
 }

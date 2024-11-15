@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 @lang('message.category') / @lang('message.create')
             </h2>
-            <a href="{{ route('posts.index') }}" 
+            <a href="{{ route('category.index') }}" 
                class="bg-gray-600 hover:bg-gray-500 text-sm rounded-md text-white px-3 py-2">@lang('message.back')</a>
         </div>
     </x-slot>
@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('categories.store') }}" method="post">
+                    <form action="{{ route('category.store') }}" method="post">
                         @csrf
                         <!-- Title Field -->
                         <label for="title" class="text-lg font-medium">@lang('message.name')</label>

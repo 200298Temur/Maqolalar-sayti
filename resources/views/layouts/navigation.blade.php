@@ -17,27 +17,27 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                    <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.index')">
                         @lang('message.posts')
                     </x-nav-link>
                 </div>    
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                    <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
                         @lang('message.categories')
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.index')">
+                    <x-nav-link :href="route('role.index')" :active="request()->routeIs('role.index')">
                         Role
                     </x-nav-link>
                 </div>
                 {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('permissions.index')" :active="request()->routeIs('permissions.index')">
+                    <x-nav-link :href="route('permission.index')" :active="request()->routeIs('permission.index')">
                         Permission
                     </x-nav-link>                    
                 </div> --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                         User
                     </x-nav-link>
                 </div>

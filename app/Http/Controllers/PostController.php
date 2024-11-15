@@ -82,7 +82,7 @@ class PostController extends Controller
             $post->categories()->attach($request->categories);
         }
 
-        return redirect()->route('posts.index')->with('success', 'Post created successfully');
+        return redirect()->route('post.index')->with('success', 'Post created successfully');
     }
 
     
@@ -92,11 +92,11 @@ class PostController extends Controller
     public function destroy(Request $request){
         $post=Post::find($request->id);
         if($post==null){
-            return redirect()->route('posts.index')->with('error', 'Post not found');
+            return redirect()->route('post.index')->with('error', 'Post not found');
 
         }
         $post->delete();
-        return redirect()->route('posts.index')->with('success', 'Post deleted successfully');
+        return redirect()->route('post.index')->with('success', 'Post deleted successfully');
     }
 
     public function edit(string $id){
@@ -104,7 +104,7 @@ class PostController extends Controller
         // dd($id);
         if (!$post) {
             // Handle the case where the post is not found (e.g., redirect or show a message)
-            return redirect()->route('posts.index')->with('error', 'Post not found');
+            return redirect()->route('post.index')->with('error', 'Post not found');
         }
     
         $categories = Category::orderBy('name', 'asc')->get();
@@ -154,10 +154,10 @@ class PostController extends Controller
             }else{
                 $post->categories()->sync();
             }
-            return redirect()->route('posts.index')->with('success', 'Post updated successfully');
+            return redirect()->route('post.index')->with('success', 'Post updated successfully');
         } else {
             // Redirect back to create page with errors
-            return redirect()->route('posts.create')->withInput()->withErrors($validator);
+            return redirect()->route('post.create')->withInput()->withErrors($validator);
         }
     }
     public function upload(Request $request)

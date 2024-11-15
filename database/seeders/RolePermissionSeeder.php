@@ -32,25 +32,41 @@ class RolePermissionSeeder extends Seeder
         $user_create = Permission::where('key', 'user_create')->first();
         $user_update = Permission::where('key', 'user_update')->first();
         $user_delete = Permission::where('key', 'user_delete')->first();
+        $role_edit=Permission::where('key','role_edit')->first();
+        $role_store=Permission::where('key','role_store')->first();
+        $post_edit=Permission::where('key','post_edit')->first();
+        $post_store=Permission::where('key','post_store')->first();
+        $category_edit=Permission::where('key','category_edit')->first();
+        $category_store=Permission::where('key','category_store')->first();
+        $user_edit=Permission::where('key','user_edit')->first();
+        $user_store=Permission::where('key','user_store')->first();
 
-        // Bu yerda `permissions()` aloqasini to'g'ridan-to'g'ri chaqiramiz
         $adminRole->permissions()->attach([
             $role_view->id,
             $role_create->id,
             $role_update->id,
+            $role_edit->id,
+            $role_store->id,
             $role_delete->id,
+
             $post_view->id,
             $post_create->id,
             $post_update->id,
             $post_delete->id,
+            $post_edit->id,
+            $post_store->id,
             $category_view->id,
             $category_create->id,
             $category_update->id,
             $category_delete->id,
+            $category_edit->id,
+            $category_store->id,
             $user_view->id,
             $user_create->id,
             $user_update->id,
             $user_delete->id,
+            $user_edit->id,
+            $user_store->id,
         ]);
     }
 }

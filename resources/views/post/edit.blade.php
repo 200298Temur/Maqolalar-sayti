@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 @lang('message.post') / @lang('message.edit')
             </h2>
-            <a href="{{ route('posts.index') }}" 
+            <a href="{{ route('post.index') }}" 
                class="bg-gray-600 hover:bg-gray-500 text-sm rounded-md text-white px-3 py-2">
                @lang('message.back')
             </a>
@@ -15,7 +15,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('posts.update',$post->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('post.update',$post->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <!-- Title Field -->
                         <label for="title" class="text-lg font-medium">@lang('message.title')</label>
@@ -96,7 +96,7 @@
         ClassicEditor
             .create( document.querySelector( '#editor' ),{
                     ckfinder: {
-                        uploadUrl: '{{route('posts.uploadMedia').'?_token='.csrf_token()}}',
+                        uploadUrl: '{{route('post.uploadMedia').'?_token='.csrf_token()}}',
             } })
             .then( editor => {
                 console.log( 'Editor was initialized', editor );

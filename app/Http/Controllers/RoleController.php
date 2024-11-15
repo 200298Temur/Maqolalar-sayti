@@ -37,9 +37,9 @@ class RoleController extends Controller
                 $role->permissions()->attach($request->permission);
             }
     
-            return redirect()->route('roles.index')->with('success', 'Role added successfully.');
+            return redirect()->route('role.index')->with('success', 'Role added successfully.');
         } else {
-            return redirect()->route('roles.create')->withInput()->withErrors($validator);
+            return redirect()->route('role.create')->withInput()->withErrors($validator);
         }
     }
     
@@ -68,7 +68,7 @@ class RoleController extends Controller
             // Sync the permissions using IDs
             $role->permissions()->sync($request->permission ?? []);
         }
-        return redirect()->route('roles.index');
+        return redirect()->route('role.index');
     }
     
     
@@ -79,7 +79,7 @@ class RoleController extends Controller
 
         }
         $post->delete();
-        return redirect()->route('roles.index')->with('success', 'Role deleted successfully');
+        return redirect()->route('role.index')->with('success', 'Role deleted successfully');
     
 
     }

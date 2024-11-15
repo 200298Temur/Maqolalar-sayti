@@ -27,9 +27,9 @@ class PermissionController extends Controller
             $permission->name=$request->name;
             $permission->key=$request->key;
             $permission->save();
-            return redirect()->route('permissions.index')->with('success','Permission created successfully!');
+            return redirect()->route('permission.index')->with('success','Permission created successfully!');
         }else{
-            return redirect()->route('permissions.index')->withInput()->withErrors($validator);
+            return redirect()->route('permission.index')->withInput()->withErrors($validator);
         }
     }
 
@@ -51,19 +51,19 @@ class PermissionController extends Controller
             $permission->name=$request->name;
             $permission->key=$request->key;
             $permission->save();
-            return redirect()->route('permissions.index')->with('success','Permission updated successfully!');
+            return redirect()->route('permission.index')->with('success','Permission updated successfully!');
         }else{
-            return redirect()->route('permissions.index')->withInput()->withErrors($validator);
+            return redirect()->route('permission.index')->withInput()->withErrors($validator);
         }
     }
     public function destroy(string $id){
         $per=Permission::find($id);
         if($per==null){
-            return redirect()->route('permissions.index')->with('error', 'Permission not found');
+            return redirect()->route('permission.index')->with('error', 'Permission not found');
 
         }
         $per->delete();
-        return redirect()->route('permissions.index')->with('success', 'Permission deleted successfully');
+        return redirect()->route('permission.index')->with('success', 'Permission deleted successfully');
     
     }
 }

@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Role
             </h2>
-            <a href="{{route('roles.create')}}" 
+            <a href="{{route('role.create')}}" 
                class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
                @lang('message.create')
             </a>
@@ -33,9 +33,9 @@
                                 {{$role->permissions->pluck('name')->implode(',')}}
                             </td>
                             <td class="px-6 py-4 text-center"> 
-                                <a href="{{ route('roles.edit',[$role->id]) }}" 
+                                <a href="{{ route('role.edit',[$role->id]) }}" 
                                    class="bg-indigo-700	 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">@lang('message.edit')</a>                                 
-                                <a href="{{ route('roles.destroy', [$role->id]) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">@lang('message.delete')</a>   
+                                <a href="{{ route('role.destroy', [$role->id]) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">@lang('message.delete')</a>   
                             </td>
                         </tr>
                         @endforeach

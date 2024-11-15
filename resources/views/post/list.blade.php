@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 @lang('message.posts')
             </h2>
-            <a href="{{ route('posts.create') }}" 
+            <a href="{{ route('post.create') }}" 
                 class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
                 @lang('message.create')
              </a>             
@@ -12,7 +12,7 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <form action="{{ route('posts.search') }}" method="GET">
+            <form action="{{ route('post.search') }}" method="GET">
                 <input value="{{ request('search', $post->search ?? '') }}" type="text" name="search" placeholder="Search Products">
                 <button type="submit" class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2"
                 >@lang('message.search')</button>
@@ -38,7 +38,7 @@
                         <tr class="border-b">
                             <td class="px-6 py-4 text-left">{{ $post->id }}</td>
                             <td class="px-6 py-4 text-left">
-                                <a href="{{ route('posts.show', ['id' => $post->id]) }}">
+                                <a href="{{ route('post.show', ['id' => $post->id]) }}">
                                     {{ $post->title }}
                                 </a>
                             </td>
@@ -55,9 +55,9 @@
                                 <p>{{ $post->publish === '0' ? 'Draft' : 'Publish' }}</p>
                             </td>
                             <td class="px-6 py-4 text-center"> 
-                                <a href="{{ route('posts.edit', ['id' => $post->id]) }}" 
+                                <a href="{{ route('post.edit', ['id' => $post->id]) }}" 
                                     class="bg-indigo-700 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">@lang('message.edit')</a>                                
-                                 <a href="{{ route('posts.destroy', [$post->id]) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">@lang('message.delete')</a>   
+                                 <a href="{{ route('post.destroy', [$post->id]) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">@lang('message.delete')</a>   
                                     
                             </td>
                         </tr>

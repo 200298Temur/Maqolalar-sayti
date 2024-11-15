@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 User
             </h2>
-            <a href="{{Route('users.create')}}" 
+            <a href="{{Route('user.create')}}" 
                class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
                @lang('message.create')
             </a>
@@ -35,9 +35,9 @@
                                 {{$user->roles->pluck('name')->implode(',')}}
                             </td>
                             <td class="px-6 py-4 text-center"> 
-                                <a href="{{ route('users.edit',[$user->id]) }}" 
+                                <a href="{{ route('user.edit',[$user->id]) }}" 
                                    class="bg-indigo-700	 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">@lang('message.edit')</a>                                 
-                                <a href="{{ route('users.destroy', [$user->id]) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">@lang('message.delete')</a>   
+                                <a href="{{ route('user.destroy', [$user->id]) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">@lang('message.delete')</a>   
                             </td>
                         </tr>
                         @endforeach

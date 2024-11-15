@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Post / Show
             </h2>
-            <a href="{{ route('posts.index') }}" 
+            <a href="{{ route('post.index') }}" 
                class="bg-gray-600 hover:bg-gray-500 text-sm rounded-md text-white px-3 py-2">Back</a>
         </div>
     </x-slot>
