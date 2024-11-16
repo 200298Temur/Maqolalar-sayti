@@ -4,10 +4,12 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 @lang('message.categories')
             </h2>
-            <a href="{{ route('category.create') }}" 
-               class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
-               @lang('message.create')
-            </a>
+            @if (in_array('category_create', auth()->user()->permissionsKey()->toArray()))
+                <a href="{{ route('category.create') }}" 
+                    class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
+                        @lang('message.create')
+                </a>
+            @endif
         </div>
     </x-slot>
 
@@ -35,9 +37,12 @@
                                 {{ \Carbon\Carbon::parse($post->created_at)->format('d M, Y') }}
                             </td>
                             <td class="px-6 py-4 text-center"> 
-                                <a href="{{ route('category.edit',[$post->id]) }}" 
-                                   class="bg-indigo-700	 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">@lang('message.edit')</a>                                 
-                                <a href="{{ route('category.destroy', [$post->id]) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">@lang('message.delete')</a>   
+                               @if (auth()->user()->permissionsKey()->contains('category_edit'))
+                                 <a href="{{ route('category.edit',[$post->id]) }}" class="bg-indigo-700	 text-sm rounded-md text-white px-3 py-2 hover:bg-indigo-500">@lang('message.edit')</a>                                 
+                               @endif
+                               @if (auth()->user()->permissionsKey()->contains('category_delete'))
+                                 <a href="{{ route('category.destroy', [$post->id]) }}" class="bg-red-600 text-sm rounded-md text-white px-3 py-2 hover:bg-red-500">@lang('message.delete')</a>   
+                               @endif
                             </td>
                         </tr>
                         @endforeach

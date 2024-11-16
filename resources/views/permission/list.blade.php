@@ -4,10 +4,12 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Permissions
             </h2>
-            <a href="{{Route('permissions.create')}}" 
-               class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
-               @lang('message.create')
-            </a>
+            @if (auth()->user()->permissionsKey()->contains('category_edit'))
+                <a href="{{Route('permissions.create')}}" 
+                    class="bg-gray-500 hover:bg-gray-400 text-sm rounded-md text-white px-3 py-2">
+                    @lang('message.create')
+                </a>
+            @endif
         </div>
     </x-slot>
 

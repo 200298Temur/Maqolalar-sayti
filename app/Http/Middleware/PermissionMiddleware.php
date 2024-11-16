@@ -20,7 +20,9 @@ class PermissionMiddleware
         $baseRoute = Str::before($currentRouteName, '.');
         $permissionKeys = $permissions->pluck('key')->toArray();
         
-        // dd($baseRoute.'_edit',Str::endsWith($currentRouteName, 'edit'));
+        // dd(in_array('category_edit', auth()->user()->permissions()->toArray()),
+        // in_array($baseRoute.'_edit', $permissionKeys),$baseRoute.'_edit');
+        // dd(auth()->user()->permissions()->contains('category_edit'),$baseRoute.'_edit');
 
         if ($this->check($currentRouteName)){
             if (Str::endsWith($currentRouteName, 'index') && in_array($baseRoute.'_view', $permissionKeys)) {
