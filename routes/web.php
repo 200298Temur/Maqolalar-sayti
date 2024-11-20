@@ -2,7 +2,6 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FronController;
 use App\Http\Controllers\LocaleController;
-use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -13,9 +12,11 @@ use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
-Route::get('setwebhook',function(){
-    $response = Telegram::setWebhook(['url' => 'https://5387-93-188-83-205.ngrok-free.app/api/telegram/webhook']);
+Route::get('setwebhook', function () {
+    $response = Telegram::setWebhook(['url' => 'https://af46-93-188-83-205.ngrok-free.app/api/telegram/webhook']);
+    return $response;
 });
+
 
 
 
@@ -28,12 +29,14 @@ Route::get('/', function () {
     return redirect($locale);
 });
 
-Route::group(['prefix' => '/en', 'middleware' =>SetLocale::class], function () {
+Route::group(['prefix' => '/en', 'middleware' => SetLocale::class], function () {
     group_routes();
 });
-Route::group(['prefix' => '/uz', 'middleware' =>SetLocale::class], function () {
+
+Route::group(['prefix' => '/uz', 'middleware' => SetLocale::class], function () {
     group_routes();
 });
+
 
 function group_routes () {
     Route::get('/', [FronController::class, 'index'])->name('front.index');
@@ -92,11 +95,4 @@ Route::prefix('admin')->middleware(['auth', LocalizationMiddleware::class,Permis
 Route::get('posts/search', [PostController::class, 'search'])->name('post.search');
 Route::post('posts/upload', [PostController::class, 'upload'])->name('post.uploadMedia');
 
-// Route::group(['prefix' => '{locale}', 'where' => ['locale' => 'en|uz'], 'middleware' => 'auth'], function () {
-//     Route::prefix('admin')->group(function () {
-        
-//     });
-// });
-
-// Require authentication routes
 require __DIR__.'/auth.php';
