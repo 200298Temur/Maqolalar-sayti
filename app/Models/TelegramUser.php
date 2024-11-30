@@ -17,5 +17,10 @@ class TelegramUser extends Model
         'language_code',
         'is_premium',
         'user_id',
-    ];  
+    ]; 
+    public function posts()
+    {
+        return $this->hasMany(TelegramPost::class, 'telegram_user_id');
+    }
+    
 }

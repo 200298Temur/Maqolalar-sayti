@@ -12,7 +12,7 @@
                             @if(is_null($post->image))
                                 <img style="height: 250px" alt="web" src="{{ asset('img/download.png') }}" />                                
                             @else
-                                <img style="height: 250px" src="{{ asset($post->image) }}" alt="boshqa" />
+                                <img style="height: 250px" src='{{ asset($post->image) }}' alt="boshqa" />
                             @endif
                             <div class="cn-title">
                                 <a href="{{env('APP_URL') . "/" . app()->getLocale() . "/posts/see/" . $post->id}}">{{ $post->title }}</a>
