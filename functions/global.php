@@ -13,7 +13,16 @@ function sendMessage($chat_id, $text,$replyMarkup = null) {
     }
     return telegram_curl('sendMessage', $data);
 }
-
+// function editMessageText($text,$message_id)  {
+    
+// }
+function deleteMessage($chat_id,$message_id){
+    $data=[
+        'chat_id'=>$chat_id,
+        'message_id'=>$message_id
+    ];
+    return telegram_curl('deleteMessage',$data);
+}
 function setWebhook() {
     $url = env('TELEGRAM_WEBHOOK_URL', '') . "/api/telegram/webhook";
     $data = [

@@ -15,8 +15,9 @@ class TelegrambotController extends Controller
     {
         // Log::info($request);
         try {
-            $message = $request->message;
+            $message = $request->message??null;
             $callback_query = $request->callback_query ?? null;        
+            $edited_message=$request->edited_message??null;
             $inlineKeyboard=null;
            
             
@@ -29,10 +30,9 @@ class TelegrambotController extends Controller
                 
                 $from = $message['from'];
                 $chat = $message['chat'];
-                // Log::info($from);
-
-
-                if ($from['id'] == $chat['id']) {
+                if($photo){
+                    
+                }elseif ($from['id'] == $chat['id']) {
                     $tguser = telegram_user_update($from);
     
                     if (!empty($text)) {
@@ -62,7 +62,7 @@ class TelegrambotController extends Controller
                             $tguser->email = $text;
                             $tguser->step = 2;
                             $send_message = "Password kiriting";
-                        }
+                        }                      
                     }elseif($tguser->step==2){
                         if(!empty($text)){
                             if(auth()->attempt(['email'=>$tguser->email,'password'=>$text])){
@@ -75,11 +75,13 @@ class TelegrambotController extends Controller
                             $tguser->step=0;
                             $send_message='Log In mal`umotlaringiz xato!';
                         }
+                        $message_id=$message['message_id'];
+                        $deleteMessage=deleteMessage($chat['id'],$message_id);
                     }elseif($tguser->step==6){
                         $column='title';
                         $value=$text;
                         $message_id=$message['message_id'];
-                         Log::info($column.' '.$value.' '.$message_id.' '.$tguser->id);
+
                          try {
                             $newpost = TelegramPost::create([
                                 'message_id' => $message_id,
@@ -90,9 +92,7 @@ class TelegrambotController extends Controller
                         } catch (\Exception $e) {
                             Log::error('Error creating TelegramPost: ' . $e->getMessage());
                         }
-                        
-                        
-                        Log::info($newpost);
+                        // Log::info($newpost);
                         $send_message='Subcontent kiriting:';
                         $tguser->step=7;
 
@@ -126,7 +126,7 @@ class TelegrambotController extends Controller
                         TelegramPost::create([
                             'message_id'=>$message_id,
                             'column'=>$column,
-                            'value'=>$value,
+                            'value'=>"<p>$value</p>",
                             'telegram_user_id'=>$tguser->id
                         ]);
                         $send_message='Contentni yozib tugatsangiz:';
@@ -148,6 +148,7 @@ class TelegrambotController extends Controller
                             ],
                         ];
                     }
+
                     if (!empty($text)) {
                         if ($text == "/menu"||$tguser->step==4) {
                             $tguser->step = 4;
@@ -276,6 +277,10 @@ class TelegrambotController extends Controller
                     }elseif($data=='bekorqilish'){
                         $tguser_callback->step=9;
                         $send_message='Contentni kiriting:';
+                    }elseif($data=='tahrirlash'){
+                        $step=$tguser_callback->spet;
+                        $step+=100;
+                        $step->save();
                     }
                 }
                 
@@ -284,8 +289,20 @@ class TelegrambotController extends Controller
                 }
                 $tguser_callback->save();
                 return 0;
+            }elseif(!empty($edited_message)){
+                $message_id=$edited_message['message_id'];
+                $text=$edited_message['text'];
+                // Log::info($message_id);
+
+                $post=TelegramPost::where('message_id',$message_id)->first();
+                if($post->column=='content'){
+                    $post->value="<p>$text</p>";
+                }else{
+                    $post->value=$text;
+                }
+                $post->save();
+
             }
-                
             
         } catch (\Throwable $e) {
             return 0;
