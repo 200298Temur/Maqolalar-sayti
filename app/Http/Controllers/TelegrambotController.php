@@ -31,7 +31,47 @@ class TelegrambotController extends Controller
                 $from = $message['from'];
                 $chat = $message['chat'];
                 if($photo){
+                    $tguser = telegram_user_update($from);
+                    $fileId = $photo[count($photo) - 1]['file_id']; 
                     
+                    $botToken = env('TELEGRAM_BOT_TOKEN');
+                    $getFileUrl = "https://api.telegram.org/bot$botToken/getFile?file_id=$fileId";
+                    $fileResponse = file_get_contents($getFileUrl);
+                    $fileData = json_decode($fileResponse, true);
+
+                    $filePath = $fileData['result']['file_path'];
+                    $downloadUrl = "https://api.telegram.org/file/bot$botToken/$filePath";
+
+                    $path = 'uploads/posts/';
+                    $filename = 'bot_'.time().'.jpg';
+                    $fileContent = file_get_contents($downloadUrl);
+                    file_put_contents($path . $filename, $fileContent);
+
+                    // Log::info($message['message_id']);
+                    try {
+                        $newpost = TelegramPost::create([
+                            'message_id' => $message['message_id'],
+                            'column' => 'image',
+                            'value' => "<img src=".$path . $filename.">",
+                            'telegram_user_id' => $tguser['id'],
+                        ]);
+                    } catch (\Exception $e) {
+                        Log::error('Error while saving post: ' . $e->getMessage());
+                    }
+                    if($caption){
+                        try {
+                            $newpost = TelegramPost::create([
+                                'message_id' => $message['message_id'],
+                                'column' => 'caption',
+                                'value' => "<p>$caption</p>",
+                                'telegram_user_id' => $tguser['id'],
+                            ]);
+                        } catch (\Exception $e) {
+                            Log::error('Error while saving post: ' . $e->getMessage());
+                        } 
+                    }
+
+
                 }elseif ($from['id'] == $chat['id']) {
                     $tguser = telegram_user_update($from);
     
@@ -227,14 +267,29 @@ class TelegrambotController extends Controller
                         foreach($contents as $content){
                             $allContent .= $content->value . "\n"; // Matnni birlashtirish
                         }
-                        
+                        $fisrtImage=TelegramPost::where('column','image')
+                        ->where('post_id',null)->first()??null;
+
+                        $images=TelegramPost::where('column','lang')
+                        ->where('post_id',null)->get();
+                        $allImage='';
+                        foreach($images as $content){
+                            $caption=TelegramPost::where('column','caption')->where('message_id',$content->message_id)
+                            ->where('post_id',null)->first();
+                            if($caption){
+                                $allImage .= $content->value.$caption->value. "\n"; // Matnni birlashtirish
+                            }else{
+                                $allImage .= $content->value . "\n"; // Matnni birlashtirish
+                            }
+                        }
                         // Log::info($allContent);
 
                         try {
                             $post = Post::create([
+                                'image'=>$fisrtImage,
                                 'title' => $title->value,
                                 'subtitle' => $subcontent->value,
-                                'content' => $allContent,
+                                'content' => $allContent.$allImage,
                                 'lang' => $lang->value,
                                 'publish' => 1,
                                 'author_id' => $author_id
@@ -295,7 +350,7 @@ class TelegrambotController extends Controller
                 // Log::info($message_id);
 
                 $post=TelegramPost::where('message_id',$message_id)->first();
-                if($post->column=='content'){
+                if($post->column=='content'||$post->column=='caption'){
                     $post->value="<p>$text</p>";
                 }else{
                     $post->value=$text;

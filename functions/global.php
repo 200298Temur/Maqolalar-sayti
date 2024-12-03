@@ -11,11 +11,15 @@ function sendMessage($chat_id, $text,$replyMarkup = null) {
     if($replyMarkup){
         $data['reply_markup']=json_encode($replyMarkup);
     }
-    return telegram_curl('sendMessage', $data);
+    return file_get_contents(telegram_curl('sendMessage', $data));
 }
-// function editMessageText($text,$message_id)  {
-    
-// }
+
+function getFile($file_id){
+    $data=[
+        'file_id'=>$file_id
+    ];
+    return telegram_curl('getFile',$data);
+}
 function deleteMessage($chat_id,$message_id){
     $data=[
         'chat_id'=>$chat_id,
